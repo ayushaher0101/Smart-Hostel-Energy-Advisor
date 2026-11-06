@@ -1,0 +1,28 @@
+{
+  "algorithm": "Linear Regression",
+  "features": [
+    "occupants",
+    "temperature_c",
+    "ac_usage_hours",
+    "lighting_hours",
+    "appliance_count",
+    "is_weekend",
+    "month"
+  ],
+  "train_size": 1460,
+  "test_size": 365,
+  "MAE": 11.7558,
+  "MSE": 231.2864,
+  "RMSE": 15.2081,
+  "R2": 0.857,
+  "intercept": -9.5817,
+  "coefficients": {
+    "occupants": 0.4462,
+    "temperature_c": 0.4311,
+    "ac_usage_hours": 1.8017,
+    "lighting_hours": 0.746,
+    "appliance_count": 0.1124,
+    "is_weekend": -0.5826,
+    "month": -0.0755
+  }
+}

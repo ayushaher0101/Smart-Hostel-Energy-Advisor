@@ -1,0 +1,55 @@
+{
+  "algorithm": "Principal Component Analysis (PCA)",
+  "n_features": 7,
+  "features": [
+    "occupants",
+    "temperature_c",
+    "ac_usage_hours",
+    "lighting_hours",
+    "appliance_count",
+    "is_weekend",
+    "month"
+  ],
+  "n_components_90pct": 4,
+  "n_components_95pct": 5,
+  "explained_variance_ratio": [
+    0.3898,
+    0.2479,
+    0.1448,
+    0.1355,
+    0.0545,
+    0.0213,
+    0.0062
+  ],
+  "cumulative_variance": [
+    0.3898,
+    0.6377,
+    0.7825,
+    0.918,
+    0.9725,
+    0.9938,
+    1.0
+  ],
+  "variance_retained_2pc": 0.6377,
+  "variance_lost_2pc": 0.3623,
+  "loadings": {
+    "PC1": {
+      "occupants": -0.4197,
+      "temperature_c": 0.5072,
+      "ac_usage_hours": 0.3771,
+      "lighting_hours": -0.468,
+      "appliance_count": -0.4096,
+      "is_weekend": 0.1537,
+      "month": -0.1182
+    },
+    "PC2": {
+      "occupants": 0.5039,
+      "temperature_c": 0.3342,
+      "ac_usage_hours": 0.5046,
+      "lighting_hours": -0.2095,
+      "appliance_count": 0.5144,
+      "is_weekend": -0.2637,
+      "month": -0.0415
+    }
+  }
+}

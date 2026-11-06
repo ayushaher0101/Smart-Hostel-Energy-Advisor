@@ -1,0 +1,39 @@
+{
+  "algorithm": "Decision Tree Classifier",
+  "criterion": "gini",
+  "max_depth": 5,
+  "features": [
+    "occupants",
+    "temperature_c",
+    "ac_usage_hours",
+    "lighting_hours",
+    "appliance_count",
+    "is_weekend",
+    "month"
+  ],
+  "train_size": 1460,
+  "test_size": 365,
+  "accuracy": 0.7836,
+  "precision": 0.6034,
+  "recall": 0.3846,
+  "f1_score": 0.4698,
+  "confusion_matrix": [
+    [
+      251,
+      23
+    ],
+    [
+      56,
+      35
+    ]
+  ],
+  "feature_importance": {
+    "ac_usage_hours": 0.5143,
+    "appliance_count": 0.2502,
+    "is_weekend": 0.1211,
+    "month": 0.0445,
+    "temperature_c": 0.031,
+    "occupants": 0.0279,
+    "lighting_hours": 0.011
+  }
+}
