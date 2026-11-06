@@ -2,17 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Smart Hostel Energy Advisor - Academic Report</title>
+<title>Smart Hostel Energy Advisor — Academic Report</title>
 <style>
   @page {
     size: A4 portrait;
-    margin: 18mm 16mm 18mm 16mm;
-    @bottom-center {
-      content: counter(page);
-      font-size: 9pt;
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      color: #666;
-    }
+    margin: 20mm 18mm 20mm 18mm;
   }
 
   * {
@@ -20,41 +14,54 @@
   }
 
   body {
-    font-family: "Georgia", "Times New Roman", serif;
-    color: #222;
-    line-height: 1.45;
-    font-size: 10.2pt;
+    font-family: "Times New Roman", Times, Georgia, serif;
+    color: #000000;
+    background-color: #ffffff;
+    line-height: 1.4;
+    font-size: 10pt;
     margin: 0;
-    padding: 0;
-    background: #fff;
+    padding: 20px;
   }
 
   .page {
     page-break-after: always;
-    min-height: 257mm; /* A4 printable height */
+    min-height: 255mm;
     position: relative;
-    padding-bottom: 5mm;
+    padding-bottom: 10mm;
   }
 
   .page:last-child {
     page-break-after: avoid;
   }
 
-  h1, h2, h3, h4 {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    color: #112233;
+  h1, h2, h3 {
+    color: #000000;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
     margin-top: 10pt;
-    margin-bottom: 5pt;
-    font-weight: 700;
+    margin-bottom: 4pt;
   }
 
-  h1 { font-size: 16pt; border-bottom: 1.5pt solid #112233; padding-bottom: 3pt; }
-  h2 { font-size: 12.5pt; border-bottom: 0.5pt solid #888; padding-bottom: 2pt; margin-top: 10pt; }
-  h3 { font-size: 10.8pt; color: #2a4365; margin-top: 7pt; margin-bottom: 3pt; }
+  h1 {
+    font-size: 14pt;
+    border-bottom: 1pt solid #000000;
+    padding-bottom: 2pt;
+  }
+
+  h2 {
+    font-size: 11pt;
+    margin-top: 8pt;
+  }
+
+  h3 {
+    font-size: 10pt;
+    margin-top: 6pt;
+  }
 
   p {
-    margin: 0 0 6pt 0;
+    margin: 0 0 5pt 0;
     text-align: justify;
+    text-justify: inter-word;
   }
 
   ul, ol {
@@ -63,31 +70,27 @@
   }
 
   li {
-    margin-bottom: 2.5pt;
+    margin-bottom: 2pt;
   }
 
   table {
     width: 100%;
     border-collapse: collapse;
-    margin: 6pt 0 8pt 0;
-    font-size: 8.8pt;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin: 6pt 0;
+    font-size: 8.5pt;
+    font-family: Arial, Helvetica, sans-serif;
   }
 
   th, td {
-    border: 0.6pt solid #bbb;
+    border: 0.6pt solid #000000;
     padding: 3.5pt 5pt;
     text-align: left;
+    color: #000000;
   }
 
   th {
-    background-color: #f1f5f9;
-    font-weight: 600;
-    color: #0f172a;
-  }
-
-  tr:nth-child(even) td {
-    background-color: #fafbfc;
+    background-color: #f5f5f5;
+    font-weight: bold;
   }
 
   .fig-container {
@@ -99,8 +102,7 @@
     max-width: 95%;
     max-height: 82mm;
     object-fit: contain;
-    border: 0.5pt solid #ddd;
-    border-radius: 3px;
+    border: 0.5pt solid #000000;
   }
 
   .fig-row {
@@ -119,132 +121,115 @@
     width: 100%;
     max-height: 70mm;
     object-fit: contain;
-    border: 0.5pt solid #ddd;
+    border: 0.5pt solid #000000;
   }
 
   .caption {
-    font-size: 8.2pt;
-    color: #4b5563;
+    font-size: 8pt;
     font-style: italic;
-    margin-top: 2.5pt;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #000000;
+    margin-top: 2pt;
+    font-family: "Times New Roman", serif;
   }
 
-  .math-box {
-    background: #f8fafc;
-    border-left: 2.5pt solid #3b82f6;
+  .formula-box {
+    border: 0.5pt solid #000000;
     padding: 4pt 8pt;
-    margin: 5pt 0;
+    margin: 4pt 0;
     font-family: "Courier New", monospace;
-    font-size: 9pt;
+    font-size: 8.8pt;
+    background: #ffffff;
   }
 
   .note-box {
-    background: #fefce8;
-    border-left: 2.5pt solid #eab308;
-    padding: 4pt 8pt;
-    margin: 5pt 0;
-    font-size: 8.8pt;
+    border: 0.5pt solid #000000;
+    padding: 5pt 8pt;
+    margin: 6pt 0;
+    font-size: 9pt;
+    background: #ffffff;
   }
 
-  /* Cover Page Styles */
+  /* Cover Page */
   .cover {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     text-align: center;
     height: 250mm;
-    padding: 20mm 10mm;
+    padding: 15mm 5mm;
   }
 
   .cover-univ {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 15pt;
-    font-weight: 700;
-    color: #1e3a8a;
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
+    font-weight: bold;
+    color: #000000;
   }
 
   .cover-dept {
-    font-size: 11pt;
-    color: #475569;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10.5pt;
+    color: #000000;
     margin-top: 4pt;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  }
-
-  .cover-badge {
-    display: inline-block;
-    padding: 4pt 14pt;
-    background: #e0f2fe;
-    color: #0369a1;
-    border-radius: 12px;
-    font-size: 10pt;
-    font-weight: 600;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    margin-top: 15pt;
   }
 
   .cover-title-box {
-    margin: 25mm 0;
-    border-top: 2pt solid #1e3a8a;
-    border-bottom: 2pt solid #1e3a8a;
-    padding: 15mm 0;
+    margin: 20mm 0;
+    border-top: 1.5pt solid #000000;
+    border-bottom: 1.5pt solid #000000;
+    padding: 12mm 0;
   }
 
   .cover-title {
-    font-size: 23pt;
-    font-weight: 800;
-    color: #0f172a;
-    line-height: 1.25;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 21pt;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #000000;
   }
 
   .cover-subtitle {
-    font-size: 12.5pt;
-    color: #475569;
-    margin-top: 8pt;
+    font-size: 11pt;
     font-style: italic;
+    color: #000000;
+    margin-top: 6pt;
   }
 
   .cover-details {
-    background: #f8fafc;
-    border: 1pt solid #cbd5e1;
-    border-radius: 6px;
-    padding: 14pt 20pt;
-    width: 75%;
+    border: 0.8pt solid #000000;
+    padding: 10pt 16pt;
+    width: 80%;
     margin: 0 auto;
     text-align: left;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 10pt;
+    font-size: 9.5pt;
   }
 
   .cover-details-row {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 5pt;
+    padding: 3pt 0;
+    border-bottom: 0.4pt solid #e0e0e0;
   }
-  .cover-details-row:last-child { margin-bottom: 0; }
-  .cover-details-label { font-weight: 600; color: #334155; }
-  .cover-details-val { color: #0f172a; font-weight: 700; }
+  .cover-details-row:last-child { border-bottom: none; }
+  .cover-details-label { font-weight: bold; color: #000000; }
+  .cover-details-val { color: #000000; }
 
+  .page-header {
+    font-size: 8pt;
+    color: #000000;
+    border-bottom: 0.5pt solid #000000;
+    padding-bottom: 2pt;
+    margin-bottom: 8pt;
+    display: flex;
+    justify-content: space-between;
+    font-family: Arial, Helvetica, sans-serif;
+  }
   .page-number {
     position: absolute;
     bottom: 0;
     right: 0;
     font-size: 8.5pt;
-    color: #888;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  }
-  .page-header {
-    font-size: 8pt;
-    color: #888;
-    border-bottom: 0.4pt solid #ccc;
-    padding-bottom: 2pt;
-    margin-bottom: 8pt;
-    display: flex;
-    justify-content: space-between;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #000000;
+    font-family: "Times New Roman", serif;
   }
 </style>
 </head>
@@ -256,14 +241,15 @@
 <div class="page">
   <div class="cover">
     <div>
-      <div class="cover-univ">Pandit Deendayal Energy University (PDEU)</div>
-      <div class="cover-dept">Department of Information & Communication Technology (ICT)</div>
-      <div class="cover-badge">Introduction to Artificial Intelligence &bull; Individual Assignment</div>
+      <div class="cover-univ">PANDIT DEENDAYAL ENERGY UNIVERSITY (PDEU)</div>
+      <div class="cover-dept">Department of Information & Communication Technology</div>
+      <div class="cover-dept" style="font-weight: bold; margin-top: 8pt;">Course: Introduction to Artificial Intelligence (AIML Assignment)</div>
     </div>
 
     <div class="cover-title-box">
       <div class="cover-title">SMART HOSTEL ENERGY ADVISOR</div>
       <div class="cover-subtitle">An Integrated Machine Learning Approach for Energy Consumption Prediction and Optimisation</div>
+      <div style="font-size: 9.5pt; margin-top: 6pt;">Smart Campus ML Challenge — Problem Statement A</div>
     </div>
 
     <div>
@@ -278,27 +264,27 @@
         </div>
         <div class="cover-details-row">
           <span class="cover-details-label">Branch & Year:</span>
-          <span class="cover-details-val">B.Tech ICT &bull; Second Year</span>
+          <span class="cover-details-val">B.Tech ICT, Second Year</span>
         </div>
         <div class="cover-details-row">
           <span class="cover-details-label">Course:</span>
           <span class="cover-details-val">Introduction to Artificial Intelligence</span>
         </div>
         <div class="cover-details-row">
-          <span class="cover-details-label">Challenge Title:</span>
-          <span class="cover-details-val">Smart Campus ML Challenge (Problem A)</span>
+          <span class="cover-details-label">Institution:</span>
+          <span class="cover-details-val">Pandit Deendayal Energy University</span>
         </div>
         <div class="cover-details-row">
           <span class="cover-details-label">GitHub Repository:</span>
-          <span class="cover-details-val"><a href="https://github.com/ayushaher0101/Smart-Hostel-Energy-Advisor" style="color: #1e3a8a; text-decoration: none;">github.com/ayushaher0101/Smart-Hostel-Energy-Advisor</a></span>
+          <span class="cover-details-val">https://github.com/ayushaher0101/Smart-Hostel-Energy-Advisor</span>
         </div>
         <div class="cover-details-row">
           <span class="cover-details-label">Submission Date:</span>
           <span class="cover-details-val">November 2026</span>
         </div>
       </div>
-      <p style="text-align: center; font-size: 8.5pt; color: #64748b; margin-top: 15pt; font-family: 'Helvetica Neue', sans-serif;">
-        PDEU Knowledge Corridor, Raisan, Gandhinagar, Gujarat &bull; Academic Year 2026-27
+      <p style="text-align: center; font-size: 8.5pt; margin-top: 15pt;">
+        Gandhinagar, Gujarat, India — Academic Year 2026–27
       </p>
     </div>
   </div>
@@ -310,40 +296,32 @@
 <!-- ============================================================ -->
 <div class="page">
   <div class="page-header">
-    <span>Smart Hostel Energy Advisor &bull; Ayush Aher (25BIT028)</span>
-    <span>Section 1: Topic & Dataset</span>
+    <span>Smart Hostel Energy Advisor — PDEU AIML Assignment</span>
+    <span>Ayush Aher (25BIT028)</span>
   </div>
 
   <h1>1. Understanding the Topic & Methodology</h1>
 
-  <h3>1.1 Introduction & Problem Statement</h3>
+  <h2>1.1 Introduction & Problem Definition</h2>
   <p>
-    University student hostels are among the largest residential energy consumers on modern educational campuses. Energy meters record electricity consumption every day, but this data usually sits idle on server disks without meaningful interpretation. In practice, hostel authorities only notice consumption spikes at the end of the monthly billing cycle, when financial waste has already happened.
+    University student hostels represent one of the primary electricity consumers on educational campuses. Digital sub-meters record daily consumption totals, but these logs are typically left unanalysed until monthly bills are delivered. This makes it impossible to intervene before excessive power draw has already occurred. This project, <i>Problem A: Smart Hostel Energy Advisor</i>, applies four core machine learning techniques taught in our course to turn raw meter data into practical operational insights: Linear Regression, Decision Tree Classifier, K-Means Clustering, and Principal Component Analysis (PCA).
   </p>
-  <p>
-    The goal of this project, titled <strong>Problem A: Smart Hostel Energy Advisor</strong>, is to apply four foundational machine learning techniques taught in our course to turn raw meter records into an intelligent advisory pipeline. The system targets three concrete operational goals:
-  </p>
-  <ul>
-    <li><strong>Predict daily electricity demand:</strong> accurately estimate energy requirement based on occupancy, weather, and operational variables to help campus microgrids plan distribution.</li>
-    <li><strong>Identify high consumption events:</strong> pinpoint the key appliance and occupancy habits that drive excessive energy draw so proactive alerts can be issued.</li>
-    <li><strong>Discover usage patterns & reduce dimensionality:</strong> group consumption profiles into meaningful clusters for targeted energy conservation guidelines.</li>
-  </ul>
 
-  <h3>1.2 Conceptual Architecture & System Pipeline</h3>
+  <h2>1.2 System Architecture & Execution Pipeline</h2>
   <div class="fig-row">
     <div class="fig-col">
       <img src="images/conceptual_architecture.png" alt="Conceptual Architecture">
-      <div class="caption">Figure 1.1: High-level conceptual architecture of the Smart Hostel Energy Advisor.</div>
+      <div class="caption">Figure 1.1: System conceptual architecture.</div>
     </div>
     <div class="fig-col">
       <img src="images/project_workflow.png" alt="Project Workflow">
-      <div class="caption">Figure 1.2: End-to-end machine learning execution workflow across all 4 algorithms.</div>
+      <div class="caption">Figure 1.2: End-to-end execution workflow.</div>
     </div>
   </div>
 
-  <h3>1.3 Dataset Description & Properties</h3>
+  <h2>1.3 Dataset Description & Properties</h2>
   <p>
-    Public energy repositories (such as UCI household datasets) focus on single homes in temperate climates and lack student hostel features (such as student headcounts, study schedules, and shared cooling loads). Therefore, following the assignment specification, a realistic <strong>synthetic dataset</strong> was generated using Python. It simulates 5 university hostel blocks across an entire calendar year (365 days &times; 5 hostels = <strong>1,825 daily records</strong>) under Ahmedabad weather conditions (PDEU climate).
+    Because public repositories lack multi-room hostel datasets featuring student occupancy counts, cooling hours, and appliance inventories, a realistic synthetic dataset simulating 5 hostel blocks over 365 calendar days (1,825 total observations) was generated using Python. The weather model follows Ahmedabad's seasonal climate (hot summers, mild winters), with realistic student occupancy drops during weekends and semester vacations.
   </p>
 
   <table>
@@ -351,9 +329,9 @@
       <tr>
         <th>Feature Name</th>
         <th>Data Type</th>
-        <th>Mean &plusmn; Std</th>
+        <th>Mean ± Std</th>
         <th>Observed Range</th>
-        <th>Physical Description & Role</th>
+        <th>Role & Description</th>
       </tr>
     </thead>
     <tbody>
@@ -362,56 +340,56 @@
         <td>Categorical</td>
         <td>5 blocks (H1-H5)</td>
         <td>H1 to H5</td>
-        <td>Hostel identifier; excluded from numeric feature matrices.</td>
+        <td>Block identifier; excluded from numeric matrices.</td>
       </tr>
       <tr>
         <td><code>occupants</code></td>
         <td>Integer</td>
-        <td>157.5 &plusmn; 64.7</td>
-        <td>36 &ndash; 290 students</td>
-        <td>Number of residents physically present in the hostel block.</td>
+        <td>157.5 ± 64.7</td>
+        <td>36 – 290 students</td>
+        <td>Hostel resident headcount for the day.</td>
       </tr>
       <tr>
         <td><code>temperature_c</code></td>
         <td>Float</td>
-        <td>28.1 &plusmn; 7.4 &deg;C</td>
-        <td>12.0 &ndash; 44.1 &deg;C</td>
-        <td>Mean daily ambient temperature (Ahmedabad seasonal curve).</td>
+        <td>28.1 ± 7.4 °C</td>
+        <td>12.0 – 44.1 °C</td>
+        <td>Mean daily ambient temperature.</td>
       </tr>
       <tr>
         <td><code>ac_usage_hours</code></td>
         <td>Float</td>
-        <td>4.41 &plusmn; 3.85 h</td>
-        <td>0.0 &ndash; 16.9 h</td>
-        <td>Aggregate air conditioner running hours across hostel wings.</td>
+        <td>4.41 ± 3.85 h</td>
+        <td>0.0 – 16.9 h</td>
+        <td>Aggregate hostel cooling runtime.</td>
       </tr>
       <tr>
         <td><code>lighting_hours</code></td>
         <td>Float</td>
-        <td>9.84 &plusmn; 1.76 h</td>
-        <td>6.0 &ndash; 14.0 h</td>
-        <td>Operating hours for common corridor and bedroom lights.</td>
+        <td>9.84 ± 1.76 h</td>
+        <td>6.0 – 14.0 h</td>
+        <td>Common area and study lighting duration.</td>
       </tr>
       <tr>
         <td><code>appliance_count</code></td>
         <td>Integer</td>
-        <td>171.6 &plusmn; 68.1</td>
-        <td>43 &ndash; 365 units</td>
-        <td>Active laptops, fans, charging devices, and water dispensers.</td>
+        <td>171.6 ± 68.1</td>
+        <td>43 – 365 units</td>
+        <td>Active laptops, fans, and personal devices.</td>
       </tr>
       <tr>
         <td><code>is_weekend</code></td>
         <td>Binary</td>
         <td>0.28 (28.5%)</td>
         <td>0 or 1</td>
-        <td>Binary indicator (1 = Saturday/Sunday, 0 = Weekday).</td>
+        <td>Weekend indicator flag (1=Sat/Sun, 0=Weekday).</td>
       </tr>
       <tr>
         <td><code>daily_energy_kwh</code></td>
         <td>Float</td>
-        <td>106.78 &plusmn; 39.62</td>
-        <td>30.4 &ndash; 240.3 kWh</td>
-        <td><strong>Continuous Target</strong>: Total daily electricity consumed.</td>
+        <td>106.8 ± 39.6</td>
+        <td>30.4 – 240.3 kWh</td>
+        <td>Target: Total daily electricity consumption.</td>
       </tr>
     </tbody>
   </table>
@@ -424,32 +402,32 @@
 <!-- ============================================================ -->
 <div class="page">
   <div class="page-header">
-    <span>Smart Hostel Energy Advisor &bull; Ayush Aher (25BIT028)</span>
-    <span>Section 2: Linear Regression</span>
+    <span>Smart Hostel Energy Advisor — PDEU AIML Assignment</span>
+    <span>Ayush Aher (25BIT028)</span>
   </div>
 
   <h1>2. Linear Regression — Energy Consumption Prediction</h1>
 
-  <h3>2.1 Theoretical Foundation & Mathematical Formulation</h3>
+  <h2>2.1 Mathematical Formulation</h2>
   <p>
-    Linear Regression models the relationship between a continuous dependent variable $y$ (daily electricity consumption in kWh) and a vector of independent exploratory variables $X = [x_1, x_2, \dots, x_p]^T$ by estimating a linear hyperplane. In our hostel energy context, the mathematical equation is formulated as:
+    Linear Regression models continuous daily electricity consumption (kWh) as a linear combination of explanatory variables:
   </p>
-  <div class="math-box">
-    $y = \beta_0 + \beta_1(\text{occupants}) + \beta_2(\text{temperature}) + \beta_3(\text{ac\_hours}) + \beta_4(\text{lighting}) + \beta_5(\text{appliances}) + \beta_6(\text{is\_weekend}) + \beta_7(\text{month}) + \epsilon$
+  <div class="formula-box">
+    y = β0 + β1(occupants) + β2(temperature) + β3(ac_hours) + β4(lighting) + β5(appliances) + β6(is_weekend) + β7(month) + ε
   </div>
   <p>
-    The Ordinary Least Squares (OLS) criterion determines the optimal coefficient vector $\hat{\beta}$ by minimising the Residual Sum of Squares (RSS): $\min_{\beta} \sum_{i=1}^n (y_i - \hat{y}_i)^2$. The analytical closed-form solution is given by $\hat{\beta} = (X^T X)^{-1} X^T y$, assuming $(X^T X)$ is non-singular.
+    The model is fitted using Ordinary Least Squares (OLS), minimizing the Residual Sum of Squares: min_β Σ(yi - ŷi)², solved analytically by β = (X^T X)^(-1) X^T y.
   </p>
 
-  <h3>2.2 Experimental Methodology & Implementation</h3>
+  <h2>2.2 Methodology & Implementation</h2>
   <p>
-    The dataset was partitioned into an 80% training set (1,460 records) and a 20% testing set (365 records) with a fixed random seed (<code>random_state=42</code>) to ensure strict experimental reproducibility. The model was trained using <code>sklearn.linear_model.LinearRegression</code> without target data leakage.
+    An 80/20 train-test split was used (1,460 training samples, 365 test samples, random_state=42). Training was performed via scikit-learn's LinearRegression class.
   </p>
 
   <div class="fig-row">
     <div class="fig-col">
       <img src="images/lr_actual_vs_predicted.png" alt="Actual vs Predicted">
-      <div class="caption">Figure 2.1: Actual vs. Predicted daily energy (test set, $R^2 = 0.8570$).</div>
+      <div class="caption">Figure 2.1: Actual vs. Predicted daily energy (R² = 0.8570).</div>
     </div>
     <div class="fig-col">
       <img src="images/lr_residual_plot.png" alt="Residual Plot">
@@ -457,67 +435,66 @@
     </div>
   </div>
 
-  <h3>2.3 Experimental Results & Evaluation</h3>
+  <h2>2.3 Evaluation Metrics & Feature Coefficients</h2>
   <p>
-    The model was evaluated on the unseen 365-day test set using four standard regression metrics:
+    Evaluated on the unseen test set, the model achieved: <b>MAE = 11.7558 kWh</b>, <b>MSE = 231.2864</b>, <b>RMSE = 15.2081 kWh</b>, and <b>R² = 0.8570</b> (explains 85.7% of total variance).
   </p>
-  <ul>
-    <li><strong>Mean Absolute Error (MAE):</strong> $11.7558 \text{ kWh}$ &mdash; on average, the daily forecast is off by under 12 kWh (~11% average relative error).</li>
-    <li><strong>Mean Squared Error (MSE):</strong> $231.2864 \text{ kWh}^2$.</li>
-    <li><strong>Root Mean Squared Error (RMSE):</strong> $15.2081 \text{ kWh}$ &mdash; penalises occasional large deviations caused by extreme weather peaks.</li>
-    <li><strong>Coefficient of Determination ($R^2$):</strong> $\mathbf{0.8570}$ &mdash; the model successfully explains <strong>85.7%</strong> of the total variance in hostel electricity usage.</li>
-  </ul>
 
   <table>
     <thead>
       <tr>
-        <th>Feature</th>
-        <th>Learned Weight ($\beta$)</th>
+        <th>Feature Name</th>
+        <th>Learned Weight (β)</th>
         <th>Physical & Engineering Interpretation</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td><code>ac_usage_hours</code></td>
-        <td><strong>+1.8017</strong></td>
-        <td>Strongest positive driver. Every additional hour of AC operation adds approximately 1.80 kWh.</td>
+        <td>+1.8017</td>
+        <td>Dominant positive driver; each extra AC hour adds ~1.80 kWh.</td>
       </tr>
       <tr>
         <td><code>lighting_hours</code></td>
         <td>+0.7460</td>
-        <td>Longer lighting operation adds 0.75 kWh/hour across common study halls and bedrooms.</td>
+        <td>Lighting adds ~0.75 kWh per operating hour across common areas.</td>
       </tr>
       <tr>
         <td><code>occupants</code></td>
         <td>+0.4462</td>
-        <td>Each additional resident adds approximately 0.45 kWh daily through base electronic presence.</td>
+        <td>Each resident contributes ~0.45 kWh daily through base electronic use.</td>
       </tr>
       <tr>
         <td><code>temperature_c</code></td>
         <td>+0.4311</td>
-        <td>Ambient heat increases cooling loads by 0.43 kWh for every 1 &deg;C elevation.</td>
+        <td>Ambient heat drives higher cooling loads (+0.43 kWh per °C).</td>
       </tr>
       <tr>
         <td><code>appliance_count</code></td>
         <td>+0.1124</td>
-        <td>Minor positive load from individual laptops and chargers.</td>
+        <td>Moderate personal laptop and phone charging footprint.</td>
       </tr>
       <tr>
         <td><code>is_weekend</code></td>
-        <td><strong>-0.5826</strong></td>
-        <td>Slight reduction in overall draw as students leave campus or study outdoors.</td>
+        <td>-0.5826</td>
+        <td>Weekends show a slight reduction as students leave campus.</td>
       </tr>
       <tr>
-        <td>Intercept ($\beta_0$)</td>
+        <td><code>month</code></td>
+        <td>-0.0755</td>
+        <td>Slight seasonal baseline drift.</td>
+      </tr>
+      <tr>
+        <td>Intercept (β0)</td>
         <td>-9.5817</td>
-        <td>Baseline mathematical offset of the fitted regression line.</td>
+        <td>Baseline mathematical constant offset of the fitted hyperplane.</td>
       </tr>
     </tbody>
   </table>
 
-  <h3>2.4 Interpretation & Practical Limitations</h3>
+  <h2>2.4 Interpretation & Practical Limitations</h2>
   <p>
-    The high $R^2$ confirms that hostel electricity demand is strongly governed by thermodynamic and occupancy parameters. However, the residual plot (Figure 2.2) shows a slight outward fanning at high energy values. This points to a clear limitation of linear models: air conditioning efficiency degrades non-linearly at extreme temperatures (>38 &deg;C), and compressor cycling introduces quadratic power spikes that simple linear terms cannot fully capture.
+    The model confirms that cooling runtime is the dominant linear driver of hostel electricity draw. However, the residual plot (Figure 2.2) shows a slight outward fanning at high consumption levels. This reveals a limitation of linear regression: compressor power draw increases non-linearly during extreme summer temperatures (>38 °C), which a simple first-order equation cannot fully capture.
   </p>
 
   <div class="page-number">Page 3</div>
@@ -528,74 +505,68 @@
 <!-- ============================================================ -->
 <div class="page">
   <div class="page-header">
-    <span>Smart Hostel Energy Advisor &bull; Ayush Aher (25BIT028)</span>
-    <span>Section 3: Decision Tree Classifier</span>
+    <span>Smart Hostel Energy Advisor — PDEU AIML Assignment</span>
+    <span>Ayush Aher (25BIT028)</span>
   </div>
 
   <h1>3. Decision Tree — High Consumption Classification</h1>
 
-  <h3>3.1 Working Principle & Splitting Criteria</h3>
+  <h2>3.1 Working Principle & Splitting Criteria</h2>
   <p>
-    A Decision Tree recursively partitions the input space into axis-aligned rectangular regions. At each internal node, the algorithm searches across all available features and all possible split thresholds to find the question that produces the purest child nodes. Purity was measured using the <strong>Gini Impurity</strong>:
-  </p>
-  <div class="math-box">
-    $I_G(t) = 1 - \sum_{k=1}^C p(k|t)^2 = 1 - (p_{\text{Normal}}^2 + p_{\text{High}}^2)$
-  </div>
-  <p>
-    When a split candidate divides node $t$ of size $N$ into left ($N_L$) and right ($N_R$) subsets, the information gain $\Delta I_G$ is calculated as $\Delta I_G = I_G(t) - \left(\frac{N_L}{N} I_G(t_L) + \frac{N_R}{N} I_G(t_R)\right)$. The feature and split point with maximum $\Delta I_G$ are selected.
+    A Decision Tree recursively partitions the input space into rectangular subsets. We used <b>Gini Impurity</b> to measure node purity: IG(t) = 1 - Σ p(k|t)². The algorithm picks the feature and threshold that maximizes Information Gain: ΔIG = IG(t) - [NL/N * IG(tL) + NR/N * IG(tR)].
   </p>
 
-  <h3>3.2 Formulation Without Target Leakage</h3>
+  <h2>3.2 Target Formulation (Preventing Data Leakage)</h2>
   <p>
-    To classify days into <em>Normal Consumption</em> versus <em>High Consumption</em>, we calculated the 75th percentile energy threshold <strong>separately for each hostel block</strong> ($Q_3(H_1)=81.6$, $Q_3(H_2)=94.5$, $Q_3(H_3)=116.4$, $Q_3(H_4)=162.7$, $Q_3(H_5)=166.5$ kWh). This per-hostel threshold avoids bias against larger blocks. Crucially, <strong><code>daily_energy_kwh</code> was completely removed</strong> from the input features $X$, preventing target leakage.
+    To classify operational days into <i>Normal</i> vs. <i>High Consumption</i> without bias against larger hostel blocks, 75th percentile thresholds were calculated <b>per hostel</b> (H1: 81.6, H2: 94.5, H3: 116.4, H4: 162.7, H5: 166.5 kWh). Crucially, <code>daily_energy_kwh</code> was <b>excluded</b> from the feature set, preventing target leakage.
   </p>
 
   <div class="fig-row">
     <div class="fig-col">
       <img src="images/dt_confusion_matrix.png" alt="Confusion Matrix">
-      <div class="caption">Figure 3.1: Confusion matrix for test-set binary classification.</div>
+      <div class="caption">Figure 3.1: Confusion matrix for High vs. Normal classification.</div>
     </div>
     <div class="fig-col">
       <img src="images/dt_feature_importance.png" alt="Feature Importance">
-      <div class="caption">Figure 3.2: Gini feature importances across hostel parameters.</div>
+      <div class="caption">Figure 3.2: Gini feature importance ranking across hostel variables.</div>
     </div>
   </div>
 
-  <h3>3.3 Experimental Results & Evaluation</h3>
+  <h2>3.3 Evaluation & Classification Performance</h2>
   <p>
-    The tree was constrained with <code>max_depth=5</code>, <code>min_samples_split=10</code>, and <code>min_samples_leaf=5</code> to prevent memorisation of training noise while remaining interpretable. Evaluated on the 365 test samples (stratified split), the performance was:
+    Constrained with <code>max_depth=5</code>, <code>min_samples_split=10</code>, and <code>min_samples_leaf=5</code>, performance on the 365-sample test set was:
   </p>
   <ul>
-    <li><strong>Classification Accuracy:</strong> $\mathbf{78.36\%}$ (286 of 365 correct predictions).</li>
-    <li><strong>Precision (High Consumption):</strong> $\mathbf{60.34\%}$ &mdash; when the advisor sounds a high-consumption alarm, it is correct in 6 out of 10 instances.</li>
-    <li><strong>Recall (High Consumption):</strong> $\mathbf{38.46\%}$ &mdash; 35 out of 91 actual high-consumption days were detected.</li>
-    <li><strong>F1-Score:</strong> $\mathbf{0.4698}$ for the minority High-usage class.</li>
+    <li><b>Classification Accuracy:</b> 78.36% (286 of 365 test instances correctly classified).</li>
+    <li><b>Precision (High Class):</b> 60.34% — when flagged High, the model is correct 6 out of 10 times.</li>
+    <li><b>Recall (High Class):</b> 38.46% (35 of 91 actual high-consumption days detected).</li>
+    <li><b>F1-Score:</b> 0.4698 on the minority high-usage class.</li>
   </ul>
 
   <table>
     <thead>
       <tr>
-        <th>Predicted Class &darr; / True Class &rarr;</th>
+        <th>Predicted \ True Class</th>
         <th>Actual Normal Consumption</th>
         <th>Actual High Consumption</th>
-        <th>Class Total</th>
+        <th>Total Predicted</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><strong>Predicted Normal</strong></td>
-        <td><strong>251</strong> (True Negatives)</td>
+        <td>Predicted Normal</td>
+        <td>251 (True Negatives)</td>
         <td>56 (False Negatives)</td>
         <td>307</td>
       </tr>
       <tr>
-        <td><strong>Predicted High</strong></td>
+        <td>Predicted High</td>
         <td>23 (False Positives)</td>
-        <td><strong>35</strong> (True Positives)</td>
+        <td>35 (True Positives)</td>
         <td>58</td>
       </tr>
       <tr>
-        <td><strong>Total Samples</strong></td>
+        <td>Total Actual</td>
         <td>274</td>
         <td>91</td>
         <td>365 (Test Set)</td>
@@ -603,12 +574,12 @@
     </tbody>
   </table>
 
-  <h3>3.4 Tree Interpretation & Energy Wastage Factors</h3>
+  <h2>3.4 Feature Importance & Wastage Triggers</h2>
   <p>
-    The feature importance analysis (Figure 3.2) shows that <strong><code>ac_usage_hours</code> accounts for 51.43% of all split decisions</strong>, followed by <code>appliance_count</code> (25.02%) and <code>is_weekend</code> (12.11%). The visualised tree shows that the root split occurs on whether AC usage exceeds ~6.2 hours. If AC hours are high and appliance counts exceed 180, the hostel has an 82% probability of crossing into excessive consumption.
+    Feature importance analysis (Figure 3.2) indicates that <b>ac_usage_hours alone accounts for 51.43% of all tree splits</b>, followed by <code>appliance_count</code> (25.02%) and <code>is_weekend</code> (12.11%). The tree identifies that whenever AC hours exceed 6.2 hours on a high-occupancy weekday, the hostel faces an 82% probability of crossing into high consumption.
   </p>
   <p>
-    <strong>Limitations:</strong> A single decision tree forms orthogonal boundary steps. Because weather and human behavior change smoothly, the tree can misclassify observations close to its rigid split thresholds.
+    <b>Limitations:</b> Decision trees make orthogonal, step-like splits. Real-world human behavior changes gradually, so observations near boundary thresholds can be misclassified.
   </p>
 
   <div class="page-number">Page 4</div>
@@ -619,90 +590,84 @@
 <!-- ============================================================ -->
 <div class="page">
   <div class="page-header">
-    <span>Smart Hostel Energy Advisor &bull; Ayush Aher (25BIT028)</span>
-    <span>Section 4: K-Means Clustering (Part 1)</span>
+    <span>Smart Hostel Energy Advisor — PDEU AIML Assignment</span>
+    <span>Ayush Aher (25BIT028)</span>
   </div>
 
-  <h1>4. K-Means Clustering — Consumption Pattern Discovery</h1>
+  <h1>4. K-Means Clustering — Pattern Discovery (Part 1)</h1>
 
-  <h3>4.1 Unsupervised Learning & Centroid-Based Formulation</h3>
+  <h2>4.1 Unsupervised Centroid-Based Formulation</h2>
   <p>
-    Unlike the supervised methods in earlier sections, K-Means is an unsupervised clustering algorithm. It groups unlabeled hostel observation vectors into $k$ distinct partitions without predefined target classes. Given a dataset of $n$ observations $\{x_1, x_2, \dots, x_n\} \in \mathbb{R}^d$, K-Means partitions the data into $k$ non-overlapping sets $S = \{S_1, S_2, \dots, S_k\}$ by minimising the within-cluster sum of squares (WCSS), also known as <strong>Inertia</strong>:
+    K-Means is an unsupervised clustering algorithm that groups unlabeled hostel records into k distinct clusters without predefined category labels. Given n observation vectors {x1, x2, ..., xn}, K-Means minimizes the Within-Cluster Sum of Squares (WCSS), also called Inertia:
   </p>
-  <div class="math-box">
-    $J(S) = \sum_{j=1}^k \sum_{x_i \in S_j} \|x_i - \mu_j\|_2^2$
+  <div class="formula-box">
+    J(S) = Σ (j=1 to k) Σ (xi in Sj) ||xi - μj||²
   </div>
   <p>
-    where $\mu_j = \frac{1}{|S_j|} \sum_{x \in S_j} x$ represents the geometric centroid of cluster $S_j$, and $\|\cdot\|_2$ denotes standard Euclidean distance. The algorithm alternates between two steps until centroids stabilize:
+    where μj is the geometric mean centroid of cluster Sj. The algorithm alternates between assigning points to their nearest centroid and recalculating centroid positions until convergence.
   </p>
-  <ol>
-    <li><strong>Assignment Step:</strong> Assign each daily record to its closest centroid: $S_j^{(t)} = \{x_i : \|x_i - \mu_j^{(t)}\|^2 \le \|x_i - \mu_l^{(t)}\|^2 \ \forall l, 1 \le l \le k\}$.</li>
-    <li><strong>Update Step:</strong> Recalculate centroids as the arithmetic mean of all vectors assigned to that cluster: $\mu_j^{(t+1)} = \frac{1}{|S_j^{(t)}|} \sum_{x_i \in S_j^{(t)}} x_i$.</li>
-  </ol>
 
-  <h3>4.2 Feature Scaling & Standardisation</h3>
+  <h2>4.2 Standardisation & Feature Preprocessing</h2>
   <p>
-    Because Euclidean distance is sensitive to feature magnitudes, unscaled variables with large numerical values (such as <code>occupants</code> ranging up to 290 or <code>appliance_count</code> up to 365) would dominate smaller variables (such as <code>ac_usage_hours</code> from 0 to 16.9 or <code>is_weekend</code> from 0 to 1). We applied Z-score standardisation via <code>StandardScaler</code>:
+    Because Euclidean distance is sensitive to numerical magnitudes, features with large scales (such as occupants up to 290) would dominate smaller features (such as ac_usage_hours up to 16.9). All numerical features were standardized using StandardScaler: z = (x - μ) / σ.
   </p>
-  <div class="math-box">
-    $z = \frac{x - \mu}{\sigma} \quad \implies \quad \mathbb{E}[z] = 0, \ \text{Var}(z) = 1$
-  </div>
 
-  <h3>4.3 Determining Optimal $k$: Elbow Method & Silhouette Analysis</h3>
+  <h2>4.3 Elbow Method & Silhouette Analysis</h2>
   <p>
-    To choose a well-founded number of clusters, we ran experiments from $k = 2$ through $k = 10$ using <code>n_init=10</code> restarts. We tracked both Inertia and the <strong>Silhouette Coefficient</strong> $s(i) = \frac{b(i) - a(i)}{\max(a(i), b(i))}$, where $a(i)$ is the mean intra-cluster distance and $b(i)$ is the nearest-cluster distance.
+    To select an appropriate k, we tested values from k = 2 to k = 10, tracking both Inertia and the Silhouette Score s(i) = [b(i) - a(i)] / max(a(i), b(i)):
   </p>
 
   <div class="fig-container">
-    <img src="images/km_elbow_curve.png" alt="Elbow Curve and Silhouette Score">
-    <div class="caption">Figure 4.1: K-Means evaluation: Inertia (left axis) and Silhouette Score (right axis) for $k \in [2, 10]$.</div>
+    <img src="images/km_elbow_curve.png" alt="Elbow Curve">
+    <div class="caption">Figure 4.1: K-Means evaluation: Inertia (left) and Silhouette Score (right) for k from 2 to 10.</div>
   </div>
 
   <table>
     <thead>
       <tr>
-        <th>Clusters ($k$)</th>
+        <th>Cluster Count (k)</th>
         <th>Inertia (WCSS)</th>
         <th>Silhouette Score</th>
-        <th>Rate of Inertia Reduction ($\Delta \text{Inertia}$)</th>
+        <th>Rate of Inertia Reduction (ΔInertia)</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>$k = 2$</td>
+        <td>k = 2</td>
         <td>8,748.05</td>
         <td>0.2849</td>
-        <td>Baseline</td>
-      </tr>
-      <tr style="background-color: #f0fdf4; font-weight: bold;">
-        <td>$k = 3$ (Selected)</td>
-        <td>6,501.36</td>
-        <td>0.2911</td>
-        <td>&minus;2,246.69 (Sharpest bend: 25.7% drop)</td>
+        <td>Baseline partition</td>
       </tr>
       <tr>
-        <td>$k = 4$</td>
+        <td><b>k = 3 (Selected)</b></td>
+        <td><b>6,501.36</b></td>
+        <td><b>0.2911</b></td>
+        <td>-2,246.69 (Sharpest bend: 25.7% reduction)</td>
+      </tr>
+      <tr>
+        <td>k = 4</td>
         <td>5,343.45</td>
         <td>0.2859</td>
-        <td>&minus;1,157.91 (Diminishing return)</td>
+        <td>-1,157.91 (Diminishing return)</td>
       </tr>
       <tr>
-        <td>$k = 5$</td>
+        <td>k = 5</td>
         <td>4,508.54</td>
         <td>0.2991</td>
-        <td>&minus;834.91</td>
+        <td>-834.91</td>
       </tr>
       <tr>
-        <td>$k = 6$</td>
+        <td>k = 6</td>
         <td>3,861.24</td>
         <td>0.3235</td>
-        <td>&minus;647.30 (Over-segmentation of hostel types)</td>
+        <td>-647.30 (Over-segmentation of hostel types)</td>
       </tr>
     </tbody>
   </table>
 
+  <h2>4.4 Selection Justification</h2>
   <p>
-    <strong>Selection Justification:</strong> While higher $k$ values show mathematical increases in silhouette score, the rate of inertia reduction drops significantly after $k=3$ (Figure 4.1). Choosing $k=3$ matches our university domain requirement: categorising hostel operational days into <strong>Low</strong>, <strong>Moderate</strong>, and <strong>High</strong> consumption states that campus administrators can easily act on.
+    Although higher values of k produce minor gains in mathematical silhouette score, the rate of inertia reduction drops significantly after k = 3 (Figure 4.1). Choosing k = 3 aligns well with campus operational needs, grouping daily operations into <b>Low</b>, <b>Moderate</b>, and <b>High</b> consumption states that facilities staff can easily interpret.
   </p>
 
   <div class="page-number">Page 5</div>
@@ -713,58 +678,60 @@
 <!-- ============================================================ -->
 <div class="page">
   <div class="page-header">
-    <span>Smart Hostel Energy Advisor &bull; Ayush Aher (25BIT028)</span>
-    <span>Section 4: K-Means Clustering (Part 2)</span>
+    <span>Smart Hostel Energy Advisor — PDEU AIML Assignment</span>
+    <span>Ayush Aher (25BIT028)</span>
   </div>
 
-  <h3>4.4 Cluster Profile Analysis & Label Assignment</h3>
+  <h1>4. K-Means Clustering — Pattern Discovery (Part 2)</h1>
+
+  <h2>4.5 Cluster Profiles & Label Assignment</h2>
   <p>
-    Rather than assuming cluster indices automatically represent low, medium, or high consumption, we analyzed the mean feature values of each cluster after training before assigning descriptive labels:
+    Rather than assuming cluster indices correspond to particular usage levels, we analyzed the mean feature values of each cluster after training before assigning descriptive labels:
   </p>
 
   <table>
     <thead>
       <tr>
-        <th>Assigned Profile</th>
+        <th>Cluster Label</th>
         <th>Cluster ID</th>
-        <th>Sample Count</th>
-        <th>Mean Occupants</th>
-        <th>Mean Temp</th>
-        <th>Mean AC Hours</th>
-        <th>Mean Lighting</th>
-        <th>Mean Energy (kWh)</th>
+        <th>Record Count</th>
+        <th>Occupants</th>
+        <th>Temp (°C)</th>
+        <th>AC Hours</th>
+        <th>Lighting (h)</th>
+        <th>Mean Energy</th>
       </tr>
     </thead>
     <tbody>
-      <tr style="background-color: #f0fdf4;">
-        <td><strong>Low Consumption</strong></td>
+      <tr>
+        <td>Low Consumption</td>
         <td>Cluster 2</td>
-        <td><strong>699</strong> (38.3%)</td>
-        <td>109.9 students</td>
-        <td>34.79 &deg;C</td>
+        <td>699 (38.3%)</td>
+        <td>109.9</td>
+        <td>34.79 °C</td>
         <td>6.90 h</td>
         <td>8.48 h</td>
-        <td><strong>85.20 kWh</strong></td>
+        <td>85.20 kWh</td>
       </tr>
-      <tr style="background-color: #eff6ff;">
-        <td><strong>Moderate Consumption</strong></td>
+      <tr>
+        <td>Moderate Consumption</td>
         <td>Cluster 0</td>
-        <td><strong>608</strong> (33.3%)</td>
-        <td>142.1 students</td>
-        <td>21.27 &deg;C</td>
+        <td>608 (33.3%)</td>
+        <td>142.1</td>
+        <td>21.27 °C</td>
         <td>1.24 h</td>
         <td>11.07 h</td>
-        <td><strong>89.22 kWh</strong></td>
+        <td>89.22 kWh</td>
       </tr>
-      <tr style="background-color: #fef2f2;">
-        <td><strong>High Consumption</strong></td>
+      <tr>
+        <td>High Consumption</td>
         <td>Cluster 1</td>
-        <td><strong>518</strong> (28.4%)</td>
-        <td>239.9 students</td>
-        <td>26.91 &deg;C</td>
+        <td>518 (28.4%)</td>
+        <td>239.9</td>
+        <td>26.91 °C</td>
         <td>4.77 h</td>
         <td>10.22 h</td>
-        <td><strong>156.52 kWh</strong></td>
+        <td>156.52 kWh</td>
       </tr>
     </tbody>
   </table>
@@ -772,33 +739,27 @@
   <div class="fig-row">
     <div class="fig-col">
       <img src="images/km_cluster_distribution.png" alt="Cluster Distribution">
-      <div class="caption">Figure 4.2: Distribution of records across the 3 identified clusters.</div>
+      <div class="caption">Figure 4.2: Record distribution across the 3 clusters.</div>
     </div>
     <div class="fig-col">
-      <img src="images/km_cluster_scatter.png" alt="Cluster Scatter Plot">
-      <div class="caption">Figure 4.3: 2D scatter of clusters (Occupants vs Daily Energy).</div>
+      <img src="images/km_cluster_scatter.png" alt="Cluster Scatter">
+      <div class="caption">Figure 4.3: 2D cluster scatter (Occupants vs Daily Energy).</div>
     </div>
   </div>
 
-  <h3>4.5 Physical Interpretation of Discovered Clusters</h3>
+  <h2>4.6 Physical Interpretation of Discovered Clusters</h2>
   <p>
-    Examining the cluster centroids reveals interesting behavioral patterns across campus:
+    Examining cluster centroids reveals distinct operational patterns across the academic year:
   </p>
   <ul>
-    <li>
-      <strong>Low Consumption (Cluster 2 &mdash; 85.20 kWh):</strong> This cluster corresponds to summer vacation periods (May&ndash;June). While ambient temperatures are high (34.8 &deg;C) and AC is active in occupied rooms (6.90 h), the total student headcount is low (109.9 occupants vs. the 157.5 average). The smaller number of occupied rooms keeps overall hostel energy low.
-    </li>
-    <li>
-      <strong>Moderate Consumption (Cluster 0 &mdash; 89.22 kWh):</strong> This cluster captures the winter months (November&ndash;February). Ambient temperatures are mild (21.3 &deg;C), leading to minimal AC usage (1.24 hours). However, shorter winter daylight hours cause higher lighting demand (11.07 h), producing steady, moderate energy use.
-    </li>
-    <li>
-      <strong>High Consumption (Cluster 1 &mdash; 156.52 kWh):</strong> This cluster represents full-session operations in larger hostel blocks (H4 and H5). It combines high occupancy (239.9 students), full appliance loads (257 appliances), and warm weather (26.9 &deg;C with 4.77 AC hours), driving mean energy to 156.52 kWh &mdash; 83% higher than the other clusters.
-    </li>
+    <li><b>Low Consumption (Cluster 2 — 85.20 kWh):</b> Corresponds to summer vacation periods (May–June). Temperatures are high (34.8 °C) and AC is active in occupied rooms (6.90 h), but low student headcount (109.9 vs. 157.5 average) keeps total hostel energy low.</li>
+    <li><b>Moderate Consumption (Cluster 0 — 89.22 kWh):</b> Captures winter conditions (Nov–Feb). Mild weather (21.3 °C) requires minimal AC (1.24 h). However, shorter winter daylight hours cause longer lighting use (11.07 h), producing steady, moderate energy draw.</li>
+    <li><b>High Consumption (Cluster 1 — 156.52 kWh):</b> Represents full-session operations in larger hostel blocks (H4 and H5). High occupancy (239.9 students), full appliance loads (257 units), and warm weather (26.9 °C, 4.77 AC hours) combine to produce a mean energy draw of 156.52 kWh — 83% higher than the other clusters.</li>
   </ul>
 
-  <h3>4.6 Practical Limitations of K-Means</h3>
+  <h2>4.7 Limitations of K-Means Clustering</h2>
   <p>
-    K-Means assumes spherical clusters of approximately equal variance. Because energy data forms a continuous distribution rather than isolated groups, points along the boundaries between moderate and low clusters can be assigned somewhat arbitrarily. Additionally, the final clustering remains sensitive to initial centroid placement, though running with <code>n_init=10</code> mitigates this.
+    K-Means assumes spherical clusters with similar variance. Because energy consumption forms a continuous distribution rather than naturally separated groups, boundary points between low and moderate clusters can be assigned somewhat arbitrarily.
   </p>
 
   <div class="page-number">Page 6</div>
@@ -809,67 +770,51 @@
 <!-- ============================================================ -->
 <div class="page">
   <div class="page-header">
-    <span>Smart Hostel Energy Advisor &bull; Ayush Aher (25BIT028)</span>
-    <span>Section 5: Principal Component Analysis (Part 1)</span>
+    <span>Smart Hostel Energy Advisor — PDEU AIML Assignment</span>
+    <span>Ayush Aher (25BIT028)</span>
   </div>
 
-  <h1>5. Principal Component Analysis — Dimensionality Reduction</h1>
+  <h1>5. Principal Component Analysis — Dimensionality Reduction (Part 1)</h1>
 
-  <h3>5.1 Mathematical Derivation & Concept</h3>
+  <h2>5.1 Mathematical Derivation & Concept</h2>
   <p>
-    Principal Component Analysis (PCA) is an orthogonal linear transformation technique that maps data from an original $d$-dimensional space into an uncorrelated $k$-dimensional subspace ($k \le d$) while retaining as much variance as possible. Given a standardized data matrix $X \in \mathbb{R}^{n \times d}$ with zero empirical mean, the sample covariance matrix $\Sigma$ is computed as:
-  </p>
-  <div class="math-box">
-    $\Sigma = \frac{1}{n-1} X^T X \quad \in \mathbb{R}^{d \times d}$
-  </div>
-  <p>
-    Because $\Sigma$ is symmetric and positive semi-definite, the spectral theorem guarantees its eigendecomposition:
-  </p>
-  <div class="math-box">
-    $\Sigma v_i = \lambda_i v_i \quad \text{for } i \in \{1, 2, \dots, d\}$
-  </div>
-  <p>
-    where $\lambda_1 \ge \lambda_2 \ge \dots \ge \lambda_d \ge 0$ are the eigenvalues, representing the variance captured along each principal axis, and $v_i$ are the corresponding orthonormal eigenvectors (the principal component loading vectors). The proportion of total variance explained by the $j$-th principal component is given by $\frac{\lambda_j}{\sum_{m=1}^d \lambda_m}$.
+    Principal Component Analysis (PCA) performs an orthogonal linear transformation to project correlated multivariate data into an uncorrelated coordinate space while retaining maximum variance. For a standardized zero-mean matrix X in R^(n x d), the sample covariance matrix Σ is given by: Σ = 1/(n-1) * X^T X. Computing the eigendecomposition yields: Σ vi = λi vi, where λ1 ≥ λ2 ≥ ... ≥ λd ≥ 0 are eigenvalues indicating explained variance along each principal axis, and vi are the corresponding orthonormal eigenvectors.
   </p>
 
-  <h3>5.2 Feature Selection (Clean Space)</h3>
+  <h2>5.2 Feature Selection (Clean Space)</h2>
   <p>
-    To ensure an accurate structural transformation without circular reasoning, <strong>no identifier columns</strong> (<code>hostel_id</code>, <code>date</code>) and <strong>no target labels</strong> (<code>daily_energy_kwh</code>, <code>consumption_category</code>) were included. The input matrix consisted solely of the 7 operational and climatic features: <code>occupants</code>, <code>temperature_c</code>, <code>ac_usage_hours</code>, <code>lighting_hours</code>, <code>appliance_count</code>, <code>is_weekend</code>, and <code>month</code>.
+    To ensure a valid structural transformation, <b>all identifiers (hostel_id, date)</b> and <b>all target labels (daily_energy_kwh, consumption_category)</b> were removed. PCA was applied strictly to the 7 operational and climatic features: occupants, temperature_c, ac_usage_hours, lighting_hours, appliance_count, is_weekend, and month.
   </p>
 
   <div class="fig-container">
-    <img src="images/pca_explained_variance.png" alt="PCA Explained Variance">
-    <div class="caption">Figure 5.1: Individual and cumulative explained variance ratio across principal components.</div>
+    <img src="images/pca_explained_variance.png" alt="Explained Variance">
+    <div class="caption">Figure 5.1: Explained variance ratio across principal components.</div>
   </div>
 
-  <h3>5.3 Explained Variance Ratio Analysis</h3>
-  <p>
-    Table 5.1 lists the variance explained by each principal component from our experimental run:
-  </p>
-
+  <h2>5.3 Explained Variance Ratio Analysis</h2>
   <table>
     <thead>
       <tr>
         <th>Component</th>
-        <th>Eigenvalue ($\lambda$)</th>
-        <th>Individual Variance Explained</th>
-        <th>Cumulative Variance Explained</th>
-        <th>Dimensionality Threshold Benchmark</th>
+        <th>Eigenvalue (λ)</th>
+        <th>Individual Variance</th>
+        <th>Cumulative Variance</th>
+        <th>Dimensionality Retention Role</th>
       </tr>
     </thead>
     <tbody>
-      <tr style="background-color: #f1f5f9; font-weight: bold;">
+      <tr>
         <td>PC1</td>
         <td>2.729</td>
-        <td><strong>38.98%</strong></td>
         <td>38.98%</td>
-        <td>Primary Weather / Seasonal axis</td>
+        <td>38.98%</td>
+        <td>Primary Climate / Seasonal axis</td>
       </tr>
-      <tr style="background-color: #f1f5f9; font-weight: bold;">
+      <tr>
         <td>PC2</td>
         <td>1.735</td>
-        <td><strong>24.79%</strong></td>
-        <td><strong>63.77%</strong></td>
+        <td>24.79%</td>
+        <td>63.77%</td>
         <td>2D Projection Retained Information (63.8%)</td>
       </tr>
       <tr>
@@ -877,21 +822,21 @@
         <td>1.014</td>
         <td>14.48%</td>
         <td>78.25%</td>
-        <td>Lighting and study cycle axis</td>
+        <td>Lighting and study schedule axis</td>
       </tr>
-      <tr style="background-color: #fefce8; font-weight: bold;">
+      <tr>
         <td>PC4</td>
         <td>0.949</td>
         <td>13.55%</td>
-        <td><strong>91.80%</strong></td>
-        <td><strong>$\ge 90\%$ Information Retention Cutoff (4 PCs)</strong></td>
+        <td>91.80%</td>
+        <td>≥90% Information Retention Cutoff (4 PCs)</td>
       </tr>
       <tr>
         <td>PC5</td>
         <td>0.382</td>
         <td>5.45%</td>
         <td>97.25%</td>
-        <td>$\ge 95\%$ Information Retention Cutoff (5 PCs)</td>
+        <td>≥95% Information Retention Cutoff (5 PCs)</td>
       </tr>
       <tr>
         <td>PC6</td>
@@ -905,13 +850,14 @@
         <td>0.043</td>
         <td>0.62%</td>
         <td>100.00%</td>
-        <td>Noise component</td>
+        <td>Minor noise component</td>
       </tr>
     </tbody>
   </table>
 
+  <h2>5.4 Information Retention & Loss</h2>
   <p>
-    <strong>Information Retention Summary:</strong> Reducing the 7 input features to a 2-dimensional plane ($PC_1, PC_2$) preserves <strong>63.77% of the total dataset variance</strong>, while 36.23% is lost. To preserve $\ge 90\%$ of the original information for downstream models, <strong>4 components</strong> are needed ($91.80\%$).
+    Projecting the 7 features down to a 2D plane (PC1, PC2) preserves <b>63.77% of total dataset variance</b>, with 36.23% lost. To retain ≥90% of original variance for downstream modeling, <b>4 principal components</b> are needed (91.80%), demonstrating that the 7 features contain roughly 4 independent physical degrees of freedom.
   </p>
 
   <div class="page-number">Page 7</div>
@@ -922,100 +868,96 @@
 <!-- ============================================================ -->
 <div class="page">
   <div class="page-header">
-    <span>Smart Hostel Energy Advisor &bull; Ayush Aher (25BIT028)</span>
-    <span>Section 5: Principal Component Analysis (Part 2)</span>
+    <span>Smart Hostel Energy Advisor — PDEU AIML Assignment</span>
+    <span>Ayush Aher (25BIT028)</span>
   </div>
 
-  <h3>5.4 Eigenvector Loadings & Structural Interpretation</h3>
+  <h1>5. Principal Component Analysis — Dimensionality Reduction (Part 2)</h1>
+
+  <h2>5.5 Eigenvector Loadings & Structural Mapping</h2>
   <p>
-    To understand what the principal components physically represent, we examined the component loading matrix $V_{d \times 2}$, which contains the cosine weights connecting the original features to $PC_1$ and $PC_2$:
+    To understand what the principal components represent physically, we examined the component loading matrix V, which contains the weights connecting original features to PC1 and PC2:
   </p>
 
   <table>
     <thead>
       <tr>
-        <th>Input Feature</th>
-        <th>$PC_1$ Loading (38.98% Var)</th>
-        <th>$PC_2$ Loading (24.79% Var)</th>
+        <th>Feature Name</th>
+        <th>PC1 Weight (38.98% Var)</th>
+        <th>PC2 Weight (24.79% Var)</th>
         <th>Physical Dimension Mapping</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td><code>temperature_c</code></td>
-        <td><strong>+0.5072</strong></td>
+        <td>+0.5072</td>
         <td>+0.3342</td>
-        <td>Heavy positive loading on $PC_1$ (Summer / Heat axis).</td>
+        <td>Heavy positive loading on PC1 (Summer/Heat dimension).</td>
       </tr>
       <tr>
         <td><code>lighting_hours</code></td>
-        <td><strong>-0.4680</strong></td>
+        <td>-0.4680</td>
         <td>-0.2095</td>
-        <td>Opposes temperature on $PC_1$ (Winter / Long nights).</td>
+        <td>Opposes temperature on PC1 (Winter/Long nights).</td>
       </tr>
       <tr>
         <td><code>occupants</code></td>
         <td>-0.4197</td>
-        <td><strong>+0.5039</strong></td>
-        <td>Dominates $PC_2$ (Headcount / Physical campus load).</td>
+        <td>+0.5039</td>
+        <td>Strong positive loading on PC2 (Resident headcount).</td>
       </tr>
       <tr>
         <td><code>appliance_count</code></td>
         <td>-0.4096</td>
-        <td><strong>+0.5144</strong></td>
-        <td>Dominates $PC_2$ (Personal electronics load).</td>
+        <td>+0.5144</td>
+        <td>Strong positive loading on PC2 (Active device load).</td>
       </tr>
       <tr>
         <td><code>ac_usage_hours</code></td>
         <td>+0.3771</td>
-        <td><strong>+0.5046</strong></td>
-        <td>Loads positively on both (driven by heat AND occupancy).</td>
+        <td>+0.5046</td>
+        <td>Loads positively on both (driven by heat AND occupants).</td>
       </tr>
       <tr>
         <td><code>is_weekend</code></td>
         <td>+0.1537</td>
         <td>-0.2637</td>
-        <td>Negative loading on $PC_2$ (reduced weekend occupancy).</td>
+        <td>Negative loading on PC2 (reduced weekend occupancy).</td>
       </tr>
       <tr>
         <td><code>month</code></td>
         <td>-0.1182</td>
         <td>-0.0415</td>
-        <td>Minor seasonal drift.</td>
+        <td>Minor seasonal drift component.</td>
       </tr>
     </tbody>
   </table>
 
   <div class="fig-row">
     <div class="fig-col">
-      <img src="images/pca_scatter.png" alt="PCA Scatter Plot">
-      <div class="caption">Figure 5.2: 2D projection ($PC_1$ vs. $PC_2$) colored by K-Means cluster.</div>
+      <img src="images/pca_scatter.png" alt="PCA Scatter">
+      <div class="caption">Figure 5.2: 2D projection colored by cluster.</div>
     </div>
     <div class="fig-col">
       <img src="images/pca_biplot.png" alt="PCA Biplot">
-      <div class="caption">Figure 5.3: Biplot showing feature loading vector directions.</div>
+      <div class="caption">Figure 5.3: Biplot showing feature loading vectors.</div>
     </div>
   </div>
 
-  <h3>5.5 Physical Meaning of the 2D Subspace</h3>
+  <h2>5.6 Physical Meaning of the 2D Subspace</h2>
   <p>
     The loadings and biplot (Figure 5.3) show that the 7 original hostel variables condense into two primary physical mechanisms:
   </p>
   <ul>
-    <li>
-      <strong>First Principal Component ($PC_1$ &mdash; The Climate/Seasonal Axis):</strong> Contrast between <code>temperature_c</code> (+0.5072) and <code>lighting_hours</code> (-0.4680). A high $PC_1$ score indicates hot summer days with long cooling requirements and late sunsets. A negative $PC_1$ score reflects cold winter conditions with short daylight hours and heavy lighting use.
-    </li>
-    <li>
-      <strong>Second Principal Component ($PC_2$ &mdash; The Base Occupancy Load Axis):</strong> Driven almost equally by <code>appliance_count</code> (+0.5144), <code>ac_usage_hours</code> (+0.5046), and <code>occupants</code> (+0.5039). A high $PC_2$ score indicates high physical population density and heavy device usage, regardless of the season.
-    </li>
+    <li><b>First Principal Component (PC1 — Climate/Seasonal Axis):</b> Captures the contrast between <code>temperature_c</code> (+0.5072) and <code>lighting_hours</code> (-0.4680). High PC1 values indicate hot summer days with long cooling demands, while negative PC1 values represent cold winter days with shorter daylight and extended lighting use.</li>
+    <li><b>Second Principal Component (PC2 — Base Occupancy Load Axis):</b> Driven almost equally by <code>appliance_count</code> (+0.5144), <code>ac_usage_hours</code> (+0.5046), and <code>occupants</code> (+0.5039). High PC2 scores reflect high resident density and device activity, regardless of the season.</li>
   </ul>
   <p>
-    When we plot the K-Means clusters onto this 2D plane (Figure 5.2), the three groups separate clearly without using the target label: High Consumption points sit in the upper half (high $PC_2$), Low Consumption points sit on the far right (high $PC_1$, low $PC_2$), and Moderate points occupy the bottom left.
+    Plotting the K-Means clusters onto this 2D plane (Figure 5.2) shows clear separation without using target labels: High Consumption points sit in the upper half (high PC2), Low Consumption points cluster on the right (high PC1, low PC2), and Moderate points occupy the lower left.
   </p>
-
-  <h3>5.6 Practical Limitations</h3>
   <p>
-    PCA only captures linear correlations. Non-linear relationships (such as the sudden spike in AC use above 28 &deg;C) get flattened, which explains why 2 components capture 63.8% rather than 80%+ of the total variance.
+    <b>Limitations:</b> PCA captures only linear variance. Non-linear behaviors (such as rapid increases in AC demand above 28 °C) get flattened, which explains why 2 components account for 63.8% rather than 80%+ of total variance.
   </p>
 
   <div class="page-number">Page 8</div>
@@ -1026,180 +968,169 @@
 <!-- ============================================================ -->
 <div class="page">
   <div class="page-header">
-    <span>Smart Hostel Energy Advisor &bull; Ayush Aher (25BIT028)</span>
-    <span>Section 6: Findings & Conclusion</span>
+    <span>Smart Hostel Energy Advisor — PDEU AIML Assignment</span>
+    <span>Ayush Aher (25BIT028)</span>
   </div>
 
   <h1>6. Overall Findings, Recommendations & Conclusion</h1>
 
-  <h3>6.1 Summary of Experimental Results</h3>
+  <h2>6.1 Summary & Cross-Algorithm Comparison</h2>
   <p>
-    All four prescribed machine learning techniques were implemented and evaluated on the hostel energy dataset. Table 6.1 compares their respective roles and performance:
+    All four prescribed machine learning techniques were implemented and evaluated on the hostel energy dataset. Table 6.1 compares their roles and primary findings:
   </p>
 
   <table>
     <thead>
       <tr>
         <th>Algorithm</th>
-        <th>Learning Paradigm</th>
-        <th>Key Objective</th>
+        <th>Learning Type</th>
+        <th>Target / Role</th>
         <th>Primary Metric</th>
-        <th>Key Insight Discovered</th>
+        <th>Key Finding Discovered</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><strong>Linear Regression</strong></td>
-        <td>Supervised Regression</td>
-        <td>Forecast daily energy (kWh)</td>
-        <td>$R^2 = \mathbf{0.8570}$, $\text{RMSE} = 15.21 \text{ kWh}$</td>
-        <td>AC hours is the primary linear driver ($\beta = +1.802$ kWh/h).</td>
+        <td>Linear Regression</td>
+        <td>Supervised</td>
+        <td>Predict daily kWh</td>
+        <td>R² = 0.8570, RMSE = 15.21</td>
+        <td>AC runtime is the primary linear driver (+1.802 kWh/h).</td>
       </tr>
       <tr>
-        <td><strong>Decision Tree</strong></td>
-        <td>Supervised Classification</td>
-        <td>Detect high-risk wastage days</td>
-        <td>$\text{Accuracy} = \mathbf{78.36\%}$, $\text{F1} = 0.4698$</td>
-        <td>AC hours drives 51.4% of high-consumption classification splits.</td>
+        <td>Decision Tree</td>
+        <td>Supervised</td>
+        <td>Classify high-usage days</td>
+        <td>Accuracy = 78.36%, F1 = 0.4698</td>
+        <td>AC hours accounts for 51.4% of high-consumption split decisions.</td>
       </tr>
       <tr>
-        <td><strong>K-Means Clustering</strong></td>
-        <td>Unsupervised Clustering</td>
-        <td>Discover consumption patterns</td>
-        <td>$\text{Silhouette} = \mathbf{0.2911}$ at $k=3$</td>
-        <td>Hostels operate in 3 distinct modes (Vacation, Winter, Full-Load).</td>
+        <td>K-Means Clustering</td>
+        <td>Unsupervised</td>
+        <td>Discover usage patterns</td>
+        <td>Silhouette = 0.2911 (k=3)</td>
+        <td>Identifies 3 operational states: Vacation, Winter, and Full-Load.</td>
       </tr>
       <tr>
-        <td><strong>PCA</strong></td>
-        <td>Unsupervised Transform</td>
-        <td>Dimensionality reduction</td>
+        <td>PCA</td>
+        <td>Unsupervised</td>
+        <td>Reduce dimensionality</td>
         <td>63.77% var (2 PCs), 91.80% (4 PCs)</td>
-        <td>Operational variance condenses into Climate and Occupancy axes.</td>
+        <td>Condenses 7 variables into Climate and Occupancy axes.</td>
       </tr>
     </tbody>
   </table>
 
-  <h3>6.2 Practical Recommendations for Hostel Energy Management</h3>
+  <h2>6.2 Practical Recommendations for PDEU Hostel Management</h2>
   <p>
-    Based on the patterns identified by our models, we suggest four concrete steps for PDEU hostel administration:
+    Based on the patterns identified across the four models, we recommend four concrete operational steps for campus facilities:
   </p>
   <ol>
-    <li>
-      <strong>Set Temperature Minimums (24 &deg;C Policy):</strong> Both Linear Regression and Decision Tree analysis confirm that AC usage is the single largest contributor to excess energy draw. Raising hostel thermostats from 18&ndash;20 &deg;C to a standardized 24 &deg;C would reduce cooling hours and could lower overall hostel electricity use by 18&ndash;25% without sacrificing comfort.
-    </li>
-    <li>
-      <strong>Occupancy-Based Block Consolidation:</strong> K-Means analysis showed that summer hostels (Cluster 2) have low occupancy (109.9 students) but still run common infrastructure across all wings. Consolidating summer-term students into one or two dedicated blocks would allow entire buildings to enter low-power sleep modes.
-    </li>
-    <li>
-      <strong>Threshold-Based Automated Alerts:</strong> The Decision Tree provides an easy-to-implement rule for energy managers: whenever aggregate AC hours exceed 6.2 hours on a high-occupancy weekday, the system should trigger automated load-shedding on non-critical common circuits.
-    </li>
-    <li>
-      <strong>Scheduled Corridor Lighting:</strong> Linear Regression showed a positive weight of +0.746 kWh/h for lighting. Installing basic motion-activated timers in corridors and restrooms could prevent lights from running unnecessarily during early morning hours.
-    </li>
+    <li><b>Standardised Thermostat Minimum (24 °C Policy):</b> Both Linear Regression and Decision Tree analysis confirm that cooling runtime is the single largest contributor to electricity draw. Raising hostel AC setpoints from 18–20 °C to a standardized 24 °C would reduce cooling hours and could lower overall hostel electricity use by 18–25% without sacrificing comfort.</li>
+    <li><b>Summer Term Hostel Consolidation:</b> K-Means analysis showed that during summer vacation (Cluster 2), hostels operate at low occupancy (109.9 students) but still incur baseline infrastructure loads across all wings. Consolidating summer-term residents into one or two dedicated blocks would allow entire buildings to enter low-power sleep modes.</li>
+    <li><b>Threshold-Based Automated Alerts:</b> The Decision Tree provides an easy-to-implement rule for energy managers: whenever aggregate AC hours exceed 6.2 hours on a high-occupancy weekday, the system should trigger automated load-shedding on non-critical common circuits.</li>
+    <li><b>Scheduled Corridor Lighting:</b> Linear Regression identified a positive weight of +0.746 kWh/h for lighting. Installing basic motion sensors in corridors and study rooms would prevent lights from running unnecessarily during early morning hours.</li>
   </ol>
 
-  <h3>6.3 Project Limitations & Future Scope</h3>
+  <h2>6.3 Project Limitations & Future Scope</h2>
   <p>
-    <strong>Current Limitations:</strong>
-    First, the dataset is synthetic, designed around documented university assumptions rather than physical sub-meter hardware. Second, daily aggregate readings smooth out short-term usage spikes; having hourly or 15-minute intervals would allow better peak-demand modeling.
+    <b>Current Limitations:</b> The dataset is synthetic, designed around documented university assumptions rather than physical sub-meter hardware. Additionally, daily aggregate readings smooth out short-term usage spikes; having hourly intervals would allow better peak-demand modeling.
   </p>
   <p>
-    <strong>Future Scope:</strong>
-    Future work could integrate IoT smart plugs for real-time sub-metering, test non-linear ensemble models (such as Random Forest or XGBoost) to better capture compressor physics, and implement automated temperature setpoint controls via campus IoT gateways.
+    <b>Future Scope:</b> Future iterations could integrate IoT smart plugs for real-time sub-metering, test non-linear ensemble models (such as Random Forest or XGBoost) to better capture compressor physics, and implement automated temperature setpoint controls via campus IoT gateways.
   </p>
 
   <div class="page-number">Page 9</div>
 </div>
 
 <!-- ============================================================ -->
-<!-- PAGE 10: REFERENCES & AI DECLARATION                        -->
+<!-- PAGE 10: REFERENCES & ACADEMIC APPENDIX                     -->
 <!-- ============================================================ -->
 <div class="page">
   <div class="page-header">
-    <span>Smart Hostel Energy Advisor &bull; Ayush Aher (25BIT028)</span>
-    <span>Section 7: References & Declaration</span>
+    <span>Smart Hostel Energy Advisor — PDEU AIML Assignment</span>
+    <span>Ayush Aher (25BIT028)</span>
   </div>
 
   <h1>7. References & Academic Appendix</h1>
 
-  <h3>7.1 Dataset Documentation & Synthesis Parameters</h3>
+  <h2>7.1 Dataset Documentation & Synthesis Assumptions</h2>
   <p>
-    In accordance with the assignment guidelines, the absence of public datasets with room-level hostel variables (such as student headcounts, AC runtime, and appliance inventories) was addressed by generating a realistic synthetic dataset via <code>src/data_generation.py</code>. Key generation parameters are summarized below:
+    In accordance with assignment guidelines, the absence of public datasets with room-level hostel features was addressed by generating a realistic synthetic dataset via <code>src/data_generation.py</code>. Key parameters are summarized below:
   </p>
   <ul>
-    <li><strong>Sampling Scope:</strong> 5 distinct hostel blocks (H1 through H5), 365 calendar days ($n = 1,825$ total daily records).</li>
-    <li><strong>Climate Modeling:</strong> Sinusoidal ambient temperature model matching Gandhinagar/Ahmedabad climate ($T_{\text{mean}} = 28^\circ\text{C}$, amplitude $10^\circ\text{C}$, peak in late May, $\sigma_{\text{noise}} = 2.0^\circ\text{C}$).</li>
-    <li><strong>Behavioral Realism:</strong> Occupancy drops by 20&ndash;35% on weekends and 50&ndash;70% during the May&ndash;June vacation. Non-linear cooling load penalties applied above 35 &deg;C. Gaussian noise factor ($\mathcal{N}(1.0, 0.12)$) added to prevent artificially predictable outputs.</li>
+    <li><b>Scope:</b> 5 distinct hostel blocks (H1 through H5) across 365 days (n = 1,825 total daily observations).</li>
+    <li><b>Climate:</b> Sinusoidal ambient temperature model matching Gandhinagar/Ahmedabad climate (T_mean = 28 °C, amplitude 10 °C, peak in late May, σ_noise = 2.0 °C).</li>
+    <li><b>Behavioral Modeling:</b> Occupancy drops by 20–35% on weekends and 50–70% during the May–June vacation. Non-linear cooling load penalties applied above 35 °C. Gaussian noise factor (N(1.0, 0.12)) added to prevent artificially predictable outputs.</li>
   </ul>
 
-  <h3>7.2 Technical & Literature References</h3>
+  <h2>7.2 Technical & Literature References</h2>
   <ol>
-    <li>Hastie, T., Tibshirani, R., & Friedman, J. (2009). <em>The Elements of Statistical Learning: Data Mining, Inference, and Prediction</em> (2nd ed.). Springer-Verlag.</li>
-    <li>Pedregosa, F., et al. (2011). Scikit-learn: Machine Learning in Python. <em>Journal of Machine Learning Research</em>, 12, 2825-2830.</li>
-    <li>MacQueen, J. (1967). Some methods for classification and analysis of multivariate observations. <em>5th Berkeley Symposium on Mathematical Statistics and Probability</em>, 1(14), 281-297.</li>
-    <li>Jolliffe, I. T., & Cadima, J. (2016). Principal component analysis: a review and recent developments. <em>Philosophical Transactions of the Royal Society A</em>, 374(2065), 20150202.</li>
-    <li>Breiman, L., Friedman, J. H., Olshen, R. A., & Stone, C. J. (1984). <em>Classification and Regression Trees</em>. Wadsworth & Brooks/Cole Advanced Books & Software.</li>
+    <li>Hastie, T., Tibshirani, R., & Friedman, J. (2009). <i>The Elements of Statistical Learning: Data Mining, Inference, and Prediction</i> (2nd ed.). Springer-Verlag.</li>
+    <li>Pedregosa, F., et al. (2011). Scikit-learn: Machine Learning in Python. <i>Journal of Machine Learning Research</i>, 12, 2825-2830.</li>
+    <li>MacQueen, J. (1967). Some methods for classification and analysis of multivariate observations. <i>5th Berkeley Symposium on Math. Stats. and Prob.</i>, 1(14), 281-297.</li>
+    <li>Jolliffe, I. T., & Cadima, J. (2016). Principal component analysis: a review and recent developments. <i>Philosophical Transactions of the Royal Society A</i>, 374(2065), 20150202.</li>
+    <li>Breiman, L., Friedman, J. H., Olshen, R. A., & Stone, C. J. (1984). <i>Classification and Regression Trees</i>. Wadsworth & Brooks/Cole.</li>
   </ol>
 
-  <h3>7.3 Software Libraries & Computing Environment</h3>
+  <h2>7.3 Software Libraries & Computing Environment</h2>
   <table>
     <thead>
       <tr>
-        <th>Software / Library</th>
+        <th>Software Library</th>
         <th>Version</th>
-        <th>Primary Function in Implementation</th>
+        <th>Primary Role in Implementation</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td>Python</td>
         <td>3.13.3</td>
-        <td>Core programming language and execution environment.</td>
+        <td>Core programming language and execution runtime.</td>
       </tr>
       <tr>
         <td>pandas</td>
         <td>3.0.1</td>
-        <td>DataFrame manipulation, date parsing, group-by statistics.</td>
+        <td>DataFrame operations, data cleaning, and group-by aggregations.</td>
       </tr>
       <tr>
         <td>NumPy</td>
         <td>2.4.2</td>
-        <td>Vectorized array operations and sinusoidal math modeling.</td>
+        <td>Vectorized array calculations and sinusoidal weather modeling.</td>
       </tr>
       <tr>
         <td>scikit-learn</td>
         <td>1.8.0</td>
-        <td>OLS regression, DecisionTreeClassifier, KMeans, PCA, metrics.</td>
+        <td>OLS regression, DecisionTreeClassifier, KMeans, PCA, and metrics.</td>
       </tr>
       <tr>
         <td>Matplotlib</td>
         <td>3.10.8</td>
-        <td>Generation of publication-grade figures, trees, and biplots.</td>
+        <td>Plot generation: scatter plots, regression fits, biplots, trees.</td>
       </tr>
       <tr>
         <td>Seaborn</td>
         <td>0.13.2</td>
-        <td>Heatmaps, distribution styling, and multi-hue scatter plots.</td>
+        <td>Heatmaps, distribution styling, and multi-hue category plots.</td>
       </tr>
     </tbody>
   </table>
 
-  <h3>7.4 GitHub Code Repository & Reproducibility</h3>
+  <h2>7.4 GitHub Code Repository & Reproducibility</h2>
   <p>
-    The complete source code, dataset generation scripts, full CSV datasets, trained models, and original visualisations are open-source and hosted on GitHub at:<br>
-    👉 <a href="https://github.com/ayushaher0101/Smart-Hostel-Energy-Advisor" style="color: #1e3a8a; font-weight: 700;">https://github.com/ayushaher0101/Smart-Hostel-Energy-Advisor</a>
+    The full source code, synthetic datasets, results, and execution pipeline are open-source and available at: 
+    <b>https://github.com/ayushaher0101/Smart-Hostel-Energy-Advisor</b>
   </p>
 
-  <h3>7.5 Honest AI Assistance Declaration</h3>
+  <h2>7.5 Honest AI Assistance Declaration</h2>
   <div class="note-box">
-    <strong>Declaration of AI Tool Usage (as required by the assignment guidelines):</strong><br>
-    I, <strong>AYUSH AHER</strong> (Roll Number: <strong>25BIT028</strong>), declare that AI coding assistance was utilized during this project for:
-    <ul style="margin-top: 3pt; margin-bottom: 3pt;">
-      <li>Structuring the synthetic data generator formulas and setting up the repository layout.</li>
-      <li>Debugging Matplotlib figure sizing and formatting the HTML/CSS report template.</li>
-      <li>Reviewing theoretical explanations of mathematical equations and metrics.</li>
-    </ul>
-    All dataset generation, preprocessing pipelines, model training runs, and evaluations were executed locally in Python. All numerical results, confusion matrices, and figures reported in this document come directly from actual execution outputs and have been independently reviewed and understood by the author.
+    <b>Declaration of AI Tool Usage (as required by the assignment guidelines):</b><br>
+    I, <b>AYUSH AHER</b> (Roll Number: <b>25BIT028</b>), declare that AI coding assistance was utilized during this project for:
+    (a) structuring synthetic data formulas and setting up the repository layout,
+    (b) debugging Matplotlib figure formatting and ReportLab PDF layout scripts, and
+    (c) reviewing theoretical explanations of mathematical equations and metrics.
+    All dataset generation, preprocessing pipelines, model training runs, and evaluations were executed locally in Python.
+    All numerical results, confusion matrices, and figures reported in this document come directly from actual execution outputs and have been independently reviewed and understood by the author.
   </div>
 
   <div class="page-number">Page 10</div>

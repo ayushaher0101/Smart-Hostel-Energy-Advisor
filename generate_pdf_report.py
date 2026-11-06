@@ -1,17 +1,20 @@
 """
-Smart Hostel Energy Advisor — Automated 10-Page Academic PDF Report Generator
-==============================================================================
-Uses ReportLab to build the exact 10-page academic report for Turnitin submission.
-Student: AYUSH AHER (25BIT028), PDEU.
+Smart Hostel Energy Advisor — Academic PDF Report Generator
+===========================================================
+Clean, classic university report styling:
+- Pure white background, black font
+- Formal academic typography (Times-Roman / Helvetica for headers)
+- Standard black borders, no artificial colored cards or pastel tints
+- Strict 10-page layout for Turnitin submission
+Student: AYUSH AHER (25BIT028), PDEU
 """
 
 import os
-from reportlab.lib.pagesizes import letter, A4
+from reportlab.lib.pagesizes import A4
 from reportlab.lib import colors
-from reportlab.lib.units import inch, cm
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.platypus import (
-    SimpleDocTemplate, Paragraph, Spacer, Image, Table, TableStyle, PageBreak, KeepTogether, HRFlowable
+    SimpleDocTemplate, Paragraph, Spacer, Image, Table, TableStyle, PageBreak, HRFlowable
 )
 from reportlab.pdfgen import canvas
 
@@ -20,8 +23,8 @@ REPORT_DIR = os.path.join(PROJECT_DIR, "report")
 IMG_DIR = os.path.join(REPORT_DIR, "images")
 PDF_PATH = os.path.join(REPORT_DIR, "Smart_Hostel_Energy_Advisor_Report.pdf")
 
-class NumberedCanvas(canvas.Canvas):
-    """Adds running headers and page numbers to every page except the cover."""
+class AcademicCanvas(canvas.Canvas):
+    """Adds minimal academic running headers and page numbers."""
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self._saved_page_states = []
@@ -34,30 +37,29 @@ class NumberedCanvas(canvas.Canvas):
         num_pages = len(self._saved_page_states)
         for state in self._saved_page_states:
             self.__dict__.update(state)
-            self.draw_page_decorations(num_pages)
+            self.draw_header_footer(num_pages)
             super().showPage()
         super().save()
 
-    def draw_page_decorations(self, page_count):
+    def draw_header_footer(self, page_count):
         if self._pageNumber == 1:
-            # Suppress headers/footers on cover page
-            return
+            return  # Clean cover page
 
         self.saveState()
-        self.setFont("Helvetica", 8)
-        self.setFillColor(colors.HexColor("#64748b"))
+        self.setFont("Times-Roman", 8.5)
+        self.setFillColor(colors.black)
 
-        # Header
-        self.drawString(45, 805, "Smart Hostel Energy Advisor • Ayush Aher (25BIT028)")
-        self.drawRightString(550, 805, "PDEU • Introduction to AI")
-        self.setStrokeColor(colors.HexColor("#cbd5e1"))
+        # Header: clean single black rule
+        self.drawString(45, 804, "Smart Hostel Energy Advisor — PDEU AIML Assignment")
+        self.drawRightString(550, 804, "Ayush Aher (25BIT028)")
+        self.setStrokeColor(colors.black)
         self.setLineWidth(0.5)
-        self.line(45, 800, 550, 800)
+        self.line(45, 798, 550, 798)
 
         # Footer
         self.line(45, 38, 550, 38)
-        self.drawString(45, 26, "PDEU ICT Department • Smart Campus ML Challenge")
-        self.drawRightString(550, 26, f"Page {self._pageNumber} of {page_count}")
+        self.drawString(45, 27, "Pandit Deendayal Energy University • Department of ICT")
+        self.drawRightString(550, 27, f"Page {self._pageNumber} of {page_count}")
         self.restoreState()
 
 
@@ -68,51 +70,31 @@ def build_pdf():
         pagesize=A4,
         leftMargin=45,
         rightMargin=45,
-        topMargin=48,
+        topMargin=50,
         bottomMargin=45
     )
 
     styles = getSampleStyleSheet()
 
-    # Custom styles
-    title_style = ParagraphStyle(
-        'CoverTitle',
-        parent=styles['Normal'],
-        fontName='Helvetica-Bold',
-        fontSize=22,
-        leading=26,
-        alignment=1, # Center
-        textColor=colors.HexColor("#0f172a")
-    )
-
-    sub_style = ParagraphStyle(
-        'CoverSub',
-        parent=styles['Normal'],
-        fontName='Helvetica-Oblique',
-        fontSize=11.5,
-        leading=15,
-        alignment=1,
-        textColor=colors.HexColor("#475569")
-    )
-
+    # Plain black-and-white academic typography
     h1_style = ParagraphStyle(
-        'SectionH1',
+        'AcademicH1',
         parent=styles['Normal'],
         fontName='Helvetica-Bold',
-        fontSize=13.5,
-        leading=17,
-        textColor=colors.HexColor("#1e3a8a"),
+        fontSize=13,
+        leading=16,
+        textColor=colors.black,
         spaceAfter=5
     )
 
     h2_style = ParagraphStyle(
-        'SectionH2',
+        'AcademicH2',
         parent=styles['Normal'],
         fontName='Helvetica-Bold',
-        fontSize=10.5,
-        leading=14,
-        textColor=colors.HexColor("#1e293b"),
-        spaceBefore=5,
+        fontSize=10,
+        leading=13.5,
+        textColor=colors.black,
+        spaceBefore=4,
         spaceAfter=3
     )
 
@@ -122,80 +104,79 @@ def build_pdf():
         fontName='Times-Roman',
         fontSize=9.2,
         leading=12.2,
-        textColor=colors.HexColor("#1f2937"),
-        alignment=4, # Justify
-        spaceAfter=4
+        textColor=colors.black,
+        alignment=4,  # Justified
+        spaceAfter=3.5
     )
 
     bullet_style = ParagraphStyle(
         'AcademicBullet',
         parent=body_style,
-        leftIndent=14,
-        spaceAfter=2.5
+        leftIndent=12,
+        spaceAfter=2
     )
 
     formula_style = ParagraphStyle(
-        'FormulaBox',
+        'AcademicFormula',
         parent=styles['Normal'],
         fontName='Courier',
-        fontSize=8.5,
-        leading=11.5,
-        textColor=colors.HexColor("#0f172a"),
-        backColor=colors.HexColor("#f8fafc"),
-        borderPadding=4,
-        spaceBefore=3,
-        spaceAfter=4
+        fontSize=8.3,
+        leading=11,
+        textColor=colors.black,
+        leftIndent=10,
+        spaceBefore=2,
+        spaceAfter=3
     )
 
     caption_style = ParagraphStyle(
-        'FigCaption',
+        'AcademicCaption',
         parent=styles['Normal'],
-        fontName='Helvetica-Oblique',
-        fontSize=7.8,
-        leading=10,
+        fontName='Times-Italic',
+        fontSize=8,
+        leading=10.5,
         alignment=1,
-        textColor=colors.HexColor("#475569"),
+        textColor=colors.black,
         spaceBefore=2,
-        spaceAfter=5
+        spaceAfter=4
     )
 
     story = []
 
     # =========================================================================
-    # PAGE 1: COVER PAGE
+    # PAGE 1: COVER PAGE (Clean Academic Title Block)
     # =========================================================================
-    story.append(Spacer(1, 25))
-    story.append(Paragraph("<b>PANDIT DEENDAYAL ENERGY UNIVERSITY (PDEU)</b>", ParagraphStyle('Univ', parent=styles['Normal'], fontName='Helvetica-Bold', fontSize=15, alignment=1, textColor=colors.HexColor("#1e3a8a"))))
+    story.append(Spacer(1, 35))
+    story.append(Paragraph("<b>PANDIT DEENDAYAL ENERGY UNIVERSITY</b>", ParagraphStyle('CoverUniv', parent=styles['Normal'], fontName='Helvetica-Bold', fontSize=15, alignment=1, textColor=colors.black)))
     story.append(Spacer(1, 4))
-    story.append(Paragraph("Department of Information and Communication Technology", ParagraphStyle('Dept', parent=styles['Normal'], fontName='Helvetica', fontSize=10.5, alignment=1, textColor=colors.HexColor("#475569"))))
+    story.append(Paragraph("DEPARTMENT OF INFORMATION & COMMUNICATION TECHNOLOGY", ParagraphStyle('CoverDept', parent=styles['Normal'], fontName='Helvetica', fontSize=10, alignment=1, textColor=colors.black)))
     story.append(Spacer(1, 4))
-    story.append(Paragraph("Course: Introduction to Artificial Intelligence • Individual Coursework", ParagraphStyle('Crs', parent=styles['Normal'], fontName='Helvetica-Bold', fontSize=9.5, alignment=1, textColor=colors.HexColor("#0369a1"))))
+    story.append(Paragraph("Course: Introduction to Artificial Intelligence", ParagraphStyle('CoverCourse', parent=styles['Normal'], fontName='Helvetica', fontSize=9.5, alignment=1, textColor=colors.black)))
 
-    story.append(Spacer(1, 55))
-    story.append(HRFlowable(width="90%", thickness=2, color=colors.HexColor("#1e3a8a"), spaceAfter=15))
-    story.append(Paragraph("SMART HOSTEL ENERGY ADVISOR", title_style))
+    story.append(Spacer(1, 60))
+    story.append(HRFlowable(width="100%", thickness=1, color=colors.black, spaceAfter=14))
+    story.append(Paragraph("<b>SMART HOSTEL ENERGY ADVISOR</b>", ParagraphStyle('CoverTitle', parent=styles['Normal'], fontName='Helvetica-Bold', fontSize=20, leading=24, alignment=1, textColor=colors.black)))
     story.append(Spacer(1, 6))
-    story.append(Paragraph("An Integrated Machine Learning Approach for Energy Consumption Prediction and Optimisation", sub_style))
-    story.append(HRFlowable(width="90%", thickness=2, color=colors.HexColor("#1e3a8a"), spaceBefore=15))
+    story.append(Paragraph("An Integrated Machine Learning Approach for Energy Consumption Prediction and Optimisation", ParagraphStyle('CoverSub', parent=styles['Normal'], fontName='Times-Italic', fontSize=11, alignment=1, textColor=colors.black)))
+    story.append(Spacer(1, 6))
+    story.append(Paragraph("Smart Campus ML Challenge — Problem Statement A", ParagraphStyle('CoverChal', parent=styles['Normal'], fontName='Helvetica', fontSize=9.5, alignment=1, textColor=colors.black)))
+    story.append(HRFlowable(width="100%", thickness=1, color=colors.black, spaceBefore=14))
 
-    story.append(Spacer(1, 65))
+    story.append(Spacer(1, 75))
 
-    # Student metadata table in center
-    meta_data = [
-        [Paragraph("<b>Student Name:</b>", body_style), Paragraph("<b>AYUSH AHER</b>", body_style)],
-        [Paragraph("<b>Roll Number:</b>", body_style), Paragraph("<b>25BIT028</b>", body_style)],
-        [Paragraph("<b>Branch & Year:</b>", body_style), Paragraph("B.Tech ICT (Second Year)", body_style)],
-        [Paragraph("<b>Course:</b>", body_style), Paragraph("Introduction to Artificial Intelligence", body_style)],
-        [Paragraph("<b>University:</b>", body_style), Paragraph("Pandit Deendayal Energy University (PDEU)", body_style)],
-        [Paragraph("<b>Assigned Challenge:</b>", body_style), Paragraph("Smart Campus ML Challenge (Problem A)", body_style)],
-        [Paragraph("<b>GitHub Repository:</b>", body_style), Paragraph("<font color='#1e3a8a'><b>ayushaher0101/Smart-Hostel-Energy-Advisor</b></font>", body_style)],
-        [Paragraph("<b>Date of Submission:</b>", body_style), Paragraph("November 2026", body_style)],
+    # Standard clean academic metadata box
+    meta_rows = [
+        [Paragraph("<b>Student Name</b>", body_style), Paragraph("AYUSH AHER", body_style)],
+        [Paragraph("<b>Roll Number</b>", body_style), Paragraph("25BIT028", body_style)],
+        [Paragraph("<b>Branch & Year</b>", body_style), Paragraph("B.Tech ICT, Second Year", body_style)],
+        [Paragraph("<b>Course Name</b>", body_style), Paragraph("Introduction to Artificial Intelligence", body_style)],
+        [Paragraph("<b>Institution</b>", body_style), Paragraph("Pandit Deendayal Energy University (PDEU)", body_style)],
+        [Paragraph("<b>GitHub Repository</b>", body_style), Paragraph("https://github.com/ayushaher0101/Smart-Hostel-Energy-Advisor", body_style)],
+        [Paragraph("<b>Submission Date</b>", body_style), Paragraph("November 2026", body_style)],
     ]
-    meta_table = Table(meta_data, colWidths=[150, 240])
+    meta_table = Table(meta_rows, colWidths=[140, 260])
     meta_table.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,-1), colors.HexColor("#f8fafc")),
-        ('BOX', (0,0), (-1,-1), 1, colors.HexColor("#cbd5e1")),
-        ('INNERGRID', (0,0), (-1,-1), 0.5, colors.HexColor("#e2e8f0")),
+        ('BOX', (0,0), (-1,-1), 0.8, colors.black),
+        ('INNERGRID', (0,0), (-1,-1), 0.4, colors.black),
         ('TOPPADDING', (0,0), (-1,-1), 5),
         ('BOTTOMPADDING', (0,0), (-1,-1), 5),
         ('LEFTPADDING', (0,0), (-1,-1), 10),
@@ -203,8 +184,8 @@ def build_pdf():
     ]))
     story.append(meta_table)
 
-    story.append(Spacer(1, 40))
-    story.append(Paragraph("Knowledge Corridor, Raisan, Gandhinagar, Gujarat — 382007", ParagraphStyle('Addr', parent=styles['Normal'], fontName='Helvetica', fontSize=8.5, alignment=1, textColor=colors.HexColor("#64748b"))))
+    story.append(Spacer(1, 50))
+    story.append(Paragraph("Gandhinagar, Gujarat, India — Academic Year 2026–27", ParagraphStyle('FootPlace', parent=styles['Normal'], fontName='Times-Roman', fontSize=8.5, alignment=1, textColor=colors.black)))
     story.append(PageBreak())
 
     # =========================================================================
@@ -213,22 +194,18 @@ def build_pdf():
     story.append(Paragraph("1. Understanding the Topic & Methodology", h1_style))
     story.append(Paragraph("<b>1.1 Introduction & Problem Definition</b>", h2_style))
     story.append(Paragraph(
-        "University student hostels account for a large portion of overall campus electrical loads. While smart energy meters log total electricity consumption daily, institutional operators rarely analyse these records to understand the underlying drivers of demand. Consequently, electricity wastage is only noticed after monthly utility bills arrive. This project, <i>Problem A: Smart Hostel Energy Advisor</i>, demonstrates a machine learning pipeline that turns raw meter logs into actionable operational insights through four foundational techniques: Linear Regression, Decision Tree, K-Means Clustering, and Principal Component Analysis.",
+        "University student hostels represent one of the primary electricity consumers on educational campuses. Digital sub-meters record daily consumption totals, but these logs are typically left unanalysed until monthly bills are delivered. This makes it impossible to intervene before excessive power draw has already occurred. This project, <i>Problem A: Smart Hostel Energy Advisor</i>, applies four core machine learning techniques taught in our course to turn raw meter data into practical operational insights: Linear Regression, Decision Tree Classifier, K-Means Clustering, and Principal Component Analysis (PCA).",
         body_style
     ))
 
     story.append(Paragraph("<b>1.2 System Architecture & Execution Pipeline</b>", h2_style))
-
-    # Images row: Conceptual & Workflow
     img1_path = os.path.join(IMG_DIR, "conceptual_architecture.png")
     img2_path = os.path.join(IMG_DIR, "project_workflow.png")
-
-    img_table_data = [
+    img_table = Table([
         [Image(img1_path, width=245, height=135), Image(img2_path, width=245, height=135)],
-        [Paragraph("Figure 1.1: Smart Hostel Energy Advisor Conceptual Architecture.", caption_style),
-         Paragraph("Figure 1.2: End-to-End Machine Learning Pipeline.", caption_style)]
-    ]
-    img_table = Table(img_table_data, colWidths=[250, 250])
+        [Paragraph("Figure 1.1: System conceptual architecture.", caption_style),
+         Paragraph("Figure 1.2: End-to-end execution workflow.", caption_style)]
+    ], colWidths=[250, 250])
     img_table.setStyle(TableStyle([
         ('ALIGN', (0,0), (-1,-1), 'CENTER'),
         ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
@@ -239,29 +216,27 @@ def build_pdf():
 
     story.append(Paragraph("<b>1.3 Dataset Description & Properties</b>", h2_style))
     story.append(Paragraph(
-        "Publicly available repositories lack multi-room hostel datasets featuring student occupancy counts, room cooling hours, and appliance inventories. Therefore, a realistic synthetic dataset simulating 5 hostel blocks over 365 calendar days (1,825 total observations) was generated using Python. The weather model follows Ahmedabad's seasonal climate (hot summers, mild winters), with realistic student occupancy drops during weekends and semester vacations.",
+        "Because public repositories lack multi-room hostel datasets featuring student occupancy counts, cooling hours, and appliance inventories, a realistic synthetic dataset simulating 5 hostel blocks over 365 calendar days (1,825 total observations) was generated using Python. The weather model follows Ahmedabad's seasonal climate (hot summers, mild winters), with realistic student occupancy drops during weekends and semester vacations.",
         body_style
     ))
 
-    # Dataset table
     ds_data = [
-        ["Feature Name", "Type", "Mean ± Std", "Observed Range", "Domain Role"],
+        ["Feature Name", "Data Type", "Mean ± Std", "Range", "Role & Description"],
         ["hostel_id", "String", "5 blocks (H1-H5)", "H1 to H5", "Identifier; excluded from numeric matrices"],
         ["occupants", "Integer", "157.5 ± 64.7", "36 – 290", "Hostel resident headcount for the day"],
         ["temperature_c", "Float", "28.1 ± 7.4 °C", "12.0 – 44.1 °C", "Mean daily ambient temperature"],
-        ["ac_usage_hours", "Float", "4.41 ± 3.85 h", "0.0 – 16.9 h", "Hostel-wide aggregated cooling runtime"],
-        ["lighting_hours", "Float", "9.84 ± 1.76 h", "6.0 – 14.0 h", "Study and corridor lighting duration"],
-        ["appliance_count", "Integer", "171.6 ± 68.1", "43 – 365", "Active laptops, fans, and common devices"],
-        ["is_weekend", "Binary", "0.28 (28.5%)", "0 or 1", "Weekend indicator flag (1=Sat/Sun)"],
-        ["daily_energy_kwh", "Float", "106.8 ± 39.6", "30.4 – 240.3 kWh", "Target: Daily electricity consumption"],
+        ["ac_usage_hours", "Float", "4.41 ± 3.85 h", "0.0 – 16.9 h", "Aggregate hostel cooling runtime"],
+        ["lighting_hours", "Float", "9.84 ± 1.76 h", "6.0 – 14.0 h", "Common area and study lighting duration"],
+        ["appliance_count", "Integer", "171.6 ± 68.1", "43 – 365", "Active laptops, fans, and chargers"],
+        ["is_weekend", "Binary", "0.28 (28.5%)", "0 or 1", "Weekend flag (1=Saturday/Sunday, 0=Weekday)"],
+        ["daily_energy_kwh", "Float", "106.8 ± 39.6", "30.4 – 240.3 kWh", "Target: Total daily electricity consumption"],
     ]
-    ds_table = Table(ds_data, colWidths=[85, 45, 80, 80, 210])
+    ds_table = Table(ds_data, colWidths=[80, 48, 80, 75, 217])
     ds_table.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,0), colors.HexColor("#f1f5f9")),
+        ('BOX', (0,0), (-1,-1), 0.6, colors.black),
+        ('INNERGRID', (0,0), (-1,-1), 0.4, colors.black),
         ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
-        ('FONTSIZE', (0,0), (-1,-1), 7.5),
-        ('TEXTCOLOR', (0,0), (-1,-1), colors.HexColor("#1e293b")),
-        ('GRID', (0,0), (-1,-1), 0.5, colors.HexColor("#cbd5e1")),
+        ('FONTSIZE', (0,0), (-1,-1), 7.2),
         ('TOPPADDING', (0,0), (-1,-1), 2.5),
         ('BOTTOMPADDING', (0,0), (-1,-1), 2.5),
     ]))
@@ -274,28 +249,27 @@ def build_pdf():
     story.append(Paragraph("2. Linear Regression — Energy Consumption Prediction", h1_style))
     story.append(Paragraph("<b>2.1 Mathematical Formulation</b>", h2_style))
     story.append(Paragraph(
-        "Linear Regression estimates continuous electricity demand (kWh) by finding an optimal linear combination of hostel predictors. The model equation is formulated as:",
+        "Linear Regression models continuous daily electricity consumption (kWh) as a linear combination of explanatory variables:",
         body_style
     ))
     story.append(Paragraph("y = β0 + β1(occupants) + β2(temperature) + β3(ac_hours) + β4(lighting) + β5(appliances) + β6(is_weekend) + β7(month) + ε", formula_style))
     story.append(Paragraph(
-        "The model is fitted using Ordinary Least Squares (OLS), minimizing the Residual Sum of Squares: min_β Σ(yi - ŷi)². The analytical solution is β = (X^T X)^(-1) X^T y.",
+        "The model is fitted using Ordinary Least Squares (OLS), minimizing the Residual Sum of Squares: min_β Σ(yi - ŷi)², solved analytically by β = (X^T X)^(-1) X^T y.",
         body_style
     ))
 
-    story.append(Paragraph("<b>2.2 Experimental Methodology & Implementation</b>", h2_style))
+    story.append(Paragraph("<b>2.2 Methodology & Implementation</b>", h2_style))
     story.append(Paragraph(
-        "The 1,825 records were split into 80% training (1,460 samples) and 20% testing (365 samples) using a fixed seed (random_state=42). Training was performed via scikit-learn's LinearRegression class.",
+        "An 80/20 train-test split was used (1,460 training samples, 365 test samples, random_state=42). Training was performed via scikit-learn's LinearRegression class.",
         body_style
     ))
 
-    # Visualizations: Actual vs Predicted & Residuals
     lr1_path = os.path.join(IMG_DIR, "lr_actual_vs_predicted.png")
     lr2_path = os.path.join(IMG_DIR, "lr_residual_plot.png")
     lr_img_table = Table([
         [Image(lr1_path, width=245, height=135), Image(lr2_path, width=245, height=135)],
-        [Paragraph("Figure 2.1: Actual vs. Predicted daily energy (R² = 0.8570).", caption_style),
-         Paragraph("Figure 2.2: Residual plot against predicted energy.", caption_style)]
+        [Paragraph("Figure 2.1: Actual vs. Predicted energy (R² = 0.8570).", caption_style),
+         Paragraph("Figure 2.2: Residual plot against predicted values.", caption_style)]
     ], colWidths=[250, 250])
     lr_img_table.setStyle(TableStyle([
         ('ALIGN', (0,0), (-1,-1), 'CENTER'),
@@ -307,16 +281,16 @@ def build_pdf():
 
     story.append(Paragraph("<b>2.3 Evaluation Metrics & Feature Coefficients</b>", h2_style))
     story.append(Paragraph(
-        "On the unseen 365-day test set, the model achieved: <b>MAE = 11.7558 kWh</b>, <b>MSE = 231.2864</b>, <b>RMSE = 15.2081 kWh</b>, and <b>R² = 0.8570</b>. An R² of 85.7% confirms strong predictive performance across the test set.",
+        "Evaluated on the test set, the model achieved: <b>MAE = 11.7558 kWh</b>, <b>MSE = 231.2864</b>, <b>RMSE = 15.2081 kWh</b>, and <b>R² = 0.8570</b> (explains 85.7% of total variance).",
         body_style
     ))
 
     coef_data = [
         ["Feature Name", "Coefficient (β)", "Engineering & Operational Interpretation"],
-        ["ac_usage_hours", "+1.8017", "Strongest positive driver; each extra AC hour increases energy by ~1.80 kWh."],
-        ["lighting_hours", "+0.7460", "Study area and corridor illumination adds ~0.75 kWh per operating hour."],
+        ["ac_usage_hours", "+1.8017", "Dominant positive driver; each extra AC hour adds ~1.80 kWh."],
+        ["lighting_hours", "+0.7460", "Lighting adds ~0.75 kWh per operating hour across common areas."],
         ["occupants", "+0.4462", "Each resident contributes ~0.45 kWh daily through base electronic use."],
-        ["temperature_c", "+0.4311", "Ambient heat drives higher cooling loads (+0.43 kWh per °C)."],
+        ["temperature_c", "+0.4311", "Ambient heat drives higher cooling load (+0.43 kWh per °C)."],
         ["appliance_count", "+0.1124", "Moderate personal laptop and phone charging footprint."],
         ["is_weekend", "-0.5826", "Weekends show a slight reduction as students leave campus."],
         ["month", "-0.0755", "Slight seasonal baseline drift."],
@@ -324,10 +298,10 @@ def build_pdf():
     ]
     coef_table = Table(coef_data, colWidths=[90, 70, 340])
     coef_table.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,0), colors.HexColor("#f1f5f9")),
+        ('BOX', (0,0), (-1,-1), 0.6, colors.black),
+        ('INNERGRID', (0,0), (-1,-1), 0.4, colors.black),
         ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
-        ('FONTSIZE', (0,0), (-1,-1), 7.5),
-        ('GRID', (0,0), (-1,-1), 0.5, colors.HexColor("#cbd5e1")),
+        ('FONTSIZE', (0,0), (-1,-1), 7.2),
         ('TOPPADDING', (0,0), (-1,-1), 2),
         ('BOTTOMPADDING', (0,0), (-1,-1), 2),
     ]))
@@ -335,7 +309,7 @@ def build_pdf():
 
     story.append(Paragraph("<b>2.4 Interpretation & Practical Limitations</b>", h2_style))
     story.append(Paragraph(
-        "The model confirms that cooling runtime is the dominant linear driver of hostel electricity draw. However, the residual plot (Figure 2.2) shows a slight outward fanning at high consumption levels. This highlights a clear limitation of linear regression: compressor power draw increases non-linearly during extreme summer temperatures (>38 °C), which a simple first-order equation cannot fully capture.",
+        "The model confirms that cooling runtime is the dominant linear driver of hostel electricity draw. However, the residual plot (Figure 2.2) shows a slight outward fanning at high consumption levels. This reveals a limitation of linear regression: compressor power draw increases non-linearly during extreme summer temperatures (>38 °C), which a simple first-order equation cannot fully capture.",
         body_style
     ))
     story.append(PageBreak())
@@ -346,22 +320,21 @@ def build_pdf():
     story.append(Paragraph("3. Decision Tree — High Consumption Classification", h1_style))
     story.append(Paragraph("<b>3.1 Working Principle & Splitting Criteria</b>", h2_style))
     story.append(Paragraph(
-        "A Decision Tree recursively partitions the input space into rectangular subsets by evaluating splitting criteria at each internal node. We used <b>Gini Impurity</b> to measure node purity: IG(t) = 1 - Σ p(k|t)². The algorithm picks the feature and threshold that maximizes impurity reduction (Information Gain): ΔIG = IG(t) - [NL/N * IG(tL) + NR/N * IG(tR)].",
+        "A Decision Tree recursively partitions the input space into rectangular subsets. We used <b>Gini Impurity</b> to measure node purity: IG(t) = 1 - Σ p(k|t)². The algorithm picks the feature and threshold that maximizes Information Gain: ΔIG = IG(t) - [NL/N * IG(tL) + NR/N * IG(tR)].",
         body_style
     ))
 
     story.append(Paragraph("<b>3.2 Target Formulation (Preventing Data Leakage)</b>", h2_style))
     story.append(Paragraph(
-        "To classify operational days into <i>Normal Consumption</i> vs. <i>High Consumption</i> without bias against larger hostel blocks, 75th percentile thresholds were calculated <b>per hostel</b> (H1: 81.6, H2: 94.5, H3: 116.4, H4: 162.7, H5: 166.5 kWh). Crucially, <code>daily_energy_kwh</code> was <b>excluded</b> from the feature set, preventing target leakage.",
+        "To classify operational days into <i>Normal</i> vs. <i>High Consumption</i> without bias against larger hostel blocks, 75th percentile thresholds were calculated <b>per hostel</b> (H1: 81.6, H2: 94.5, H3: 116.4, H4: 162.7, H5: 166.5 kWh). Crucially, <code>daily_energy_kwh</code> was <b>excluded</b> from the feature set, preventing target leakage.",
         body_style
     ))
 
-    # Visualizations: Confusion Matrix & Feature Importance
     dt1_path = os.path.join(IMG_DIR, "dt_confusion_matrix.png")
     dt2_path = os.path.join(IMG_DIR, "dt_feature_importance.png")
     dt_img_table = Table([
         [Image(dt1_path, width=245, height=135), Image(dt2_path, width=245, height=135)],
-        [Paragraph("Figure 3.1: Confusion matrix for High vs. Normal classification.", caption_style),
+        [Paragraph("Figure 3.1: Confusion matrix for classification.", caption_style),
          Paragraph("Figure 3.2: Gini feature importance ranking.", caption_style)]
     ], colWidths=[250, 250])
     dt_img_table.setStyle(TableStyle([
@@ -372,14 +345,14 @@ def build_pdf():
     ]))
     story.append(dt_img_table)
 
-    story.append(Paragraph("<b>3.3 Experimental Results & Evaluation</b>", h2_style))
+    story.append(Paragraph("<b>3.3 Evaluation & Classification Performance</b>", h2_style))
     story.append(Paragraph(
-        "The model was constrained with <code>max_depth=5</code>, <code>min_samples_split=10</code>, and <code>min_samples_leaf=5</code>. Evaluated on the 365-sample test set (stratified split), performance was:",
+        "Constrained with <code>max_depth=5</code>, <code>min_samples_split=10</code>, and <code>min_samples_leaf=5</code>, the model achieved on the test set:",
         body_style
     ))
     story.append(Paragraph("• <b>Classification Accuracy:</b> <b>78.36%</b> (286 of 365 test instances correctly classified).", bullet_style))
-    story.append(Paragraph("• <b>Precision (High Consumption):</b> <b>60.34%</b> — when flagged as High Consumption, the model is correct 6 out of 10 times.", bullet_style))
-    story.append(Paragraph("• <b>Recall (High Consumption):</b> <b>38.46%</b> (35 of 91 actual high-consumption days successfully identified).", bullet_style))
+    story.append(Paragraph("• <b>Precision (High Class):</b> <b>60.34%</b> — when flagged High, the model is correct 6 out of 10 times.", bullet_style))
+    story.append(Paragraph("• <b>Recall (High Class):</b> <b>38.46%</b> (35 of 91 actual high-consumption days detected).", bullet_style))
     story.append(Paragraph("• <b>F1-Score:</b> <b>0.4698</b> on the minority high-usage class.", bullet_style))
 
     cm_data = [
@@ -390,10 +363,10 @@ def build_pdf():
     ]
     cm_table = Table(cm_data, colWidths=[110, 130, 130, 130])
     cm_table.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,0), colors.HexColor("#f1f5f9")),
+        ('BOX', (0,0), (-1,-1), 0.6, colors.black),
+        ('INNERGRID', (0,0), (-1,-1), 0.4, colors.black),
         ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
-        ('FONTSIZE', (0,0), (-1,-1), 7.5),
-        ('GRID', (0,0), (-1,-1), 0.5, colors.HexColor("#cbd5e1")),
+        ('FONTSIZE', (0,0), (-1,-1), 7.2),
         ('TOPPADDING', (0,0), (-1,-1), 2),
         ('BOTTOMPADDING', (0,0), (-1,-1), 2),
     ]))
@@ -401,7 +374,7 @@ def build_pdf():
 
     story.append(Paragraph("<b>3.4 Feature Importance & Wastage Triggers</b>", h2_style))
     story.append(Paragraph(
-        "Feature importance analysis (Figure 3.2) indicates that <b>ac_usage_hours alone accounts for 51.43% of all tree splits</b>, followed by <code>appliance_count</code> (25.02%) and <code>is_weekend</code> (12.11%). The tree identifies that whenever AC hours exceed 6.2 hours on a high-occupancy weekday, the hostel has an 82% probability of crossing into high consumption.",
+        "Feature importance analysis (Figure 3.2) indicates that <b>ac_usage_hours alone accounts for 51.43% of all tree splits</b>, followed by <code>appliance_count</code> (25.02%) and <code>is_weekend</code> (12.11%). The tree identifies that whenever AC hours exceed 6.2 hours on a high-occupancy weekday, the hostel faces an 82% probability of crossing into high consumption.",
         body_style
     ))
     story.append(Paragraph(
@@ -451,11 +424,10 @@ def build_pdf():
     ]
     elbow_table = Table(elbow_data, colWidths=[100, 90, 90, 220])
     elbow_table.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,0), colors.HexColor("#f1f5f9")),
+        ('BOX', (0,0), (-1,-1), 0.6, colors.black),
+        ('INNERGRID', (0,0), (-1,-1), 0.4, colors.black),
         ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
-        ('FONTSIZE', (0,0), (-1,-1), 7.5),
-        ('GRID', (0,0), (-1,-1), 0.5, colors.HexColor("#cbd5e1")),
-        ('BACKGROUND', (0,2), (-1,2), colors.HexColor("#f0fdf4")),
+        ('FONTSIZE', (0,0), (-1,-1), 7.2),
         ('TOPPADDING', (0,0), (-1,-1), 2.5),
         ('BOTTOMPADDING', (0,0), (-1,-1), 2.5),
     ]))
@@ -486,24 +458,20 @@ def build_pdf():
     ]
     prof_table = Table(profile_data, colWidths=[95, 55, 65, 55, 55, 55, 55, 65])
     prof_table.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,0), colors.HexColor("#f1f5f9")),
+        ('BOX', (0,0), (-1,-1), 0.6, colors.black),
+        ('INNERGRID', (0,0), (-1,-1), 0.4, colors.black),
         ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
-        ('FONTSIZE', (0,0), (-1,-1), 7.5),
-        ('GRID', (0,0), (-1,-1), 0.5, colors.HexColor("#cbd5e1")),
-        ('BACKGROUND', (0,1), (-1,1), colors.HexColor("#f0fdf4")),
-        ('BACKGROUND', (0,2), (-1,2), colors.HexColor("#eff6ff")),
-        ('BACKGROUND', (0,3), (-1,3), colors.HexColor("#fef2f2")),
+        ('FONTSIZE', (0,0), (-1,-1), 7.2),
         ('TOPPADDING', (0,0), (-1,-1), 2.5),
         ('BOTTOMPADDING', (0,0), (-1,-1), 2.5),
     ]))
     story.append(prof_table)
 
-    # Visualizations: Cluster Distribution & Cluster Scatter
     km2_path = os.path.join(IMG_DIR, "km_cluster_distribution.png")
     km3_path = os.path.join(IMG_DIR, "km_cluster_scatter.png")
     km_img_table = Table([
         [Image(km2_path, width=245, height=135), Image(km3_path, width=245, height=135)],
-        [Paragraph("Figure 4.2: Distribution of records across the 3 clusters.", caption_style),
+        [Paragraph("Figure 4.2: Record distribution across the 3 clusters.", caption_style),
          Paragraph("Figure 4.3: 2D cluster scatter (Occupants vs Daily Energy).", caption_style)]
     ], colWidths=[250, 250])
     km_img_table.setStyle(TableStyle([
@@ -516,7 +484,7 @@ def build_pdf():
 
     story.append(Paragraph("<b>4.6 Physical Interpretation of Discovered Clusters</b>", h2_style))
     story.append(Paragraph(
-        "Examining the cluster centroids reveals distinct operational patterns across the academic year:",
+        "Examining cluster centroids reveals distinct operational patterns across the academic year:",
         body_style
     ))
     story.append(Paragraph(
@@ -557,7 +525,7 @@ def build_pdf():
 
     pca1_path = os.path.join(IMG_DIR, "pca_explained_variance.png")
     story.append(Image(pca1_path, width=470, height=140))
-    story.append(Paragraph("Figure 5.1: Individual and cumulative explained variance ratio across principal components.", caption_style))
+    story.append(Paragraph("Figure 5.1: Explained variance ratio across principal components.", caption_style))
 
     story.append(Paragraph("<b>5.3 Explained Variance Ratio Analysis</b>", h2_style))
     pca_var_data = [
@@ -572,12 +540,10 @@ def build_pdf():
     ]
     pca_var_table = Table(pca_var_data, colWidths=[65, 75, 85, 95, 180])
     pca_var_table.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,0), colors.HexColor("#f1f5f9")),
+        ('BOX', (0,0), (-1,-1), 0.6, colors.black),
+        ('INNERGRID', (0,0), (-1,-1), 0.4, colors.black),
         ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
-        ('FONTSIZE', (0,0), (-1,-1), 7.5),
-        ('GRID', (0,0), (-1,-1), 0.5, colors.HexColor("#cbd5e1")),
-        ('BACKGROUND', (0,2), (-1,2), colors.HexColor("#eff6ff")),
-        ('BACKGROUND', (0,4), (-1,4), colors.HexColor("#fefce8")),
+        ('FONTSIZE', (0,0), (-1,-1), 7.2),
         ('TOPPADDING', (0,0), (-1,-1), 2),
         ('BOTTOMPADDING', (0,0), (-1,-1), 2),
     ]))
@@ -612,22 +578,21 @@ def build_pdf():
     ]
     load_table = Table(load_data, colWidths=[90, 85, 85, 240])
     load_table.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,0), colors.HexColor("#f1f5f9")),
+        ('BOX', (0,0), (-1,-1), 0.6, colors.black),
+        ('INNERGRID', (0,0), (-1,-1), 0.4, colors.black),
         ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
-        ('FONTSIZE', (0,0), (-1,-1), 7.5),
-        ('GRID', (0,0), (-1,-1), 0.5, colors.HexColor("#cbd5e1")),
+        ('FONTSIZE', (0,0), (-1,-1), 7.2),
         ('TOPPADDING', (0,0), (-1,-1), 2),
         ('BOTTOMPADDING', (0,0), (-1,-1), 2),
     ]))
     story.append(load_table)
 
-    # Visualizations: PCA Scatter & Biplot
     pca2_path = os.path.join(IMG_DIR, "pca_scatter.png")
     pca3_path = os.path.join(IMG_DIR, "pca_biplot.png")
     pca_img_table = Table([
         [Image(pca2_path, width=245, height=135), Image(pca3_path, width=245, height=135)],
-        [Paragraph("Figure 5.2: 2D PCA projection colored by K-Means cluster.", caption_style),
-         Paragraph("Figure 5.3: PCA Biplot showing feature loading vectors.", caption_style)]
+        [Paragraph("Figure 5.2: 2D projection colored by cluster.", caption_style),
+         Paragraph("Figure 5.3: Biplot showing feature loading vectors.", caption_style)]
     ], colWidths=[250, 250])
     pca_img_table.setStyle(TableStyle([
         ('ALIGN', (0,0), (-1,-1), 'CENTER'),
@@ -679,10 +644,10 @@ def build_pdf():
     ]
     comp_table = Table(comp_data, colWidths=[90, 65, 85, 95, 165])
     comp_table.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,0), colors.HexColor("#f1f5f9")),
+        ('BOX', (0,0), (-1,-1), 0.6, colors.black),
+        ('INNERGRID', (0,0), (-1,-1), 0.4, colors.black),
         ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
-        ('FONTSIZE', (0,0), (-1,-1), 7.5),
-        ('GRID', (0,0), (-1,-1), 0.5, colors.HexColor("#cbd5e1")),
+        ('FONTSIZE', (0,0), (-1,-1), 7.2),
         ('TOPPADDING', (0,0), (-1,-1), 2.5),
         ('BOTTOMPADDING', (0,0), (-1,-1), 2.5),
     ]))
@@ -727,7 +692,7 @@ def build_pdf():
     story.append(Paragraph("7. References & Academic Appendix", h1_style))
     story.append(Paragraph("<b>7.1 Dataset Documentation & Synthesis Assumptions</b>", h2_style))
     story.append(Paragraph(
-        "In accordance with assignment guidelines, the absence of public datasets with room-level hostel features (such as student headcounts, AC runtime, and appliance inventories) was addressed by generating a realistic synthetic dataset via <code>src/data_generation.py</code>. Key generation parameters are summarized below:",
+        "In accordance with assignment guidelines, the absence of public datasets with room-level hostel features was addressed by generating a realistic synthetic dataset via <code>src/data_generation.py</code>. Key parameters are summarized below:",
         body_style
     ))
     story.append(Paragraph("• <b>Scope:</b> 5 distinct hostel blocks (H1 through H5) across 365 days (n = 1,825 total daily observations).", bullet_style))
@@ -753,10 +718,10 @@ def build_pdf():
     ]
     env_table = Table(env_data, colWidths=[100, 70, 330])
     env_table.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,0), colors.HexColor("#f1f5f9")),
+        ('BOX', (0,0), (-1,-1), 0.6, colors.black),
+        ('INNERGRID', (0,0), (-1,-1), 0.4, colors.black),
         ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
-        ('FONTSIZE', (0,0), (-1,-1), 7.5),
-        ('GRID', (0,0), (-1,-1), 0.5, colors.HexColor("#cbd5e1")),
+        ('FONTSIZE', (0,0), (-1,-1), 7.2),
         ('TOPPADDING', (0,0), (-1,-1), 2),
         ('BOTTOMPADDING', (0,0), (-1,-1), 2),
     ]))
@@ -765,7 +730,7 @@ def build_pdf():
     story.append(Paragraph("<b>7.4 GitHub Code Repository & Reproducibility</b>", h2_style))
     story.append(Paragraph(
         "The full source code, synthetic datasets, results, and execution pipeline are open-source and available at: "
-        "<b><font color='#1e3a8a'><u>https://github.com/ayushaher0101/Smart-Hostel-Energy-Advisor</u></font></b>",
+        "<b>https://github.com/ayushaher0101/Smart-Hostel-Energy-Advisor</b>",
         body_style
     ))
 
@@ -778,11 +743,11 @@ def build_pdf():
         "(c) reviewing theoretical explanations of mathematical equations and metrics. "
         "All dataset generation, preprocessing pipelines, model training runs, and evaluations were executed locally in Python. "
         "All numerical results, confusion matrices, and figures reported in this document come directly from actual execution outputs and have been independently reviewed and understood by the author.",
-        ParagraphStyle('DeclBox', parent=body_style, backColor=colors.HexColor("#fefce8"), borderPadding=5, borderColor=colors.HexColor("#eab308"), borderWidth=0.8, spaceBefore=4)
+        ParagraphStyle('DeclBox', parent=body_style, borderPadding=5, borderColor=colors.black, borderWidth=0.6, spaceBefore=4)
     ))
 
-    doc.build(story, canvasmaker=NumberedCanvas)
-    print(f"ReportLab PDF built successfully: {PDF_PATH}")
+    doc.build(story, canvasmaker=AcademicCanvas)
+    print(f"Academic PDF built successfully: {PDF_PATH}")
 
 
 if __name__ == "__main__":
