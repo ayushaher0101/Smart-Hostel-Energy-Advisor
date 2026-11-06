@@ -6,6 +6,7 @@
 **Branch:** B.Tech ICT (Second Year)  
 **Course:** Introduction to Artificial Intelligence  
 **University:** Pandit Deendayal Energy University (PDEU)  
+**GitHub Repository:** [https://github.com/ayushaher0101/Smart-Hostel-Energy-Advisor](https://github.com/ayushaher0101/Smart-Hostel-Energy-Advisor)  
 **Assignment:** Smart Campus ML Challenge (Problem A)  
 **Date:** November 2026  
 
@@ -269,7 +270,11 @@ Plotting K-Means clusters onto the 2D PCA plane (Figure 5.2) shows clear separat
 | Matplotlib | 3.10.8 | Generation of publication-grade figures, trees, and biplots |
 | Seaborn | 0.13.2 | Heatmaps, distribution styling, and multi-hue category plots |
 
-### 7.4 Honest AI Assistance Declaration
+### 7.4 GitHub Code Repository & Reproducibility
+The full source code, datasets, execution scripts, and visualisations are hosted at:  
+👉 **[https://github.com/ayushaher0101/Smart-Hostel-Energy-Advisor](https://github.com/ayushaher0101/Smart-Hostel-Energy-Advisor)**
+
+### 7.5 Honest AI Assistance Declaration
 **Declaration of AI Tool Usage (as required by the assignment guidelines):**  
 I, **AYUSH AHER** (Roll Number: **25BIT028**), declare that AI coding assistance was utilized during this project for:
 - Structuring synthetic data generation formulas and setting up the repository layout.

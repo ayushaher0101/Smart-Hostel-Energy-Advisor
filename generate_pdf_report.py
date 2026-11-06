@@ -188,6 +188,7 @@ def build_pdf():
         [Paragraph("<b>Course:</b>", body_style), Paragraph("Introduction to Artificial Intelligence", body_style)],
         [Paragraph("<b>University:</b>", body_style), Paragraph("Pandit Deendayal Energy University (PDEU)", body_style)],
         [Paragraph("<b>Assigned Challenge:</b>", body_style), Paragraph("Smart Campus ML Challenge (Problem A)", body_style)],
+        [Paragraph("<b>GitHub Repository:</b>", body_style), Paragraph("<font color='#1e3a8a'><b>ayushaher0101/Smart-Hostel-Energy-Advisor</b></font>", body_style)],
         [Paragraph("<b>Date of Submission:</b>", body_style), Paragraph("November 2026", body_style)],
     ]
     meta_table = Table(meta_data, colWidths=[150, 240])
@@ -761,7 +762,14 @@ def build_pdf():
     ]))
     story.append(env_table)
 
-    story.append(Paragraph("<b>7.4 Honest AI Assistance Declaration</b>", h2_style))
+    story.append(Paragraph("<b>7.4 GitHub Code Repository & Reproducibility</b>", h2_style))
+    story.append(Paragraph(
+        "The full source code, synthetic datasets, results, and execution pipeline are open-source and available at: "
+        "<b><font color='#1e3a8a'><u>https://github.com/ayushaher0101/Smart-Hostel-Energy-Advisor</u></font></b>",
+        body_style
+    ))
+
+    story.append(Paragraph("<b>7.5 Honest AI Assistance Declaration</b>", h2_style))
     story.append(Paragraph(
         "<b>Declaration of AI Tool Usage (as required by the assignment guidelines):</b><br/>"
         "I, <b>AYUSH AHER</b> (Roll Number: <b>25BIT028</b>), declare that AI coding assistance was utilized during this project for: "
